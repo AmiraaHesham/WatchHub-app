@@ -35,7 +35,7 @@ const Header = () => {
 
 
                 <nav className='div-navbar'>
-                    <li>Home</li>
+                    <Link to={'/'}> <li>Home</li></Link>
 
                     <div className='flex justify-center'
                         onClick={() => {

@@ -1,0 +1,10 @@
+/* Swiper Slides */
+.swiper-slide {
+  height: 400px;
+  width: 180px;
+  padding-left: 4px;
+}
+
+/* .swiper-slide:hover {
+  opacity: 0.4;
+} */
