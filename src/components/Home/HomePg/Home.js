@@ -86,7 +86,7 @@ const Home = () => {
                             const title = trend.name || trend.title
 
 
-                            return (<SwiperSlide key={index} className=" duration-500 hover:scale-110 pt-5 mx-2">
+                            return (<SwiperSlide key={index} className=" duration-500 hover:scale-110 pt-5 pb-3 mx-2">
 
                                 <span className="absolute bg-green-600 flex items-center justify-center w-9 h-9 rounded-lg m-1 text-gray-200">{specificDigits}</span>
                                 <img src={imgUrl + trend.poster_path} alt='' className='h-[330px] w-[100%] shadow-md shadow-slate-400 rounded-lg' />
