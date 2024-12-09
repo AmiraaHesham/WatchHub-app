@@ -25,13 +25,11 @@ const Header = () => {
 
                     ><PiListBold /></span>
                     <div>
-                        <span className='text-color3 '>Flow  </span>
+                        <span className='text-color3 '>Watch  </span>
 
-                        <span >View</span>
+                        <span >Hub</span>
                     </div>
                 </div>
-
-
 
 
                 <nav className='div-navbar'>
@@ -80,9 +78,10 @@ const Header = () => {
                             className='hidden div-menus'>
                             <span >Action</span>
                             <span >Comedy</span>
+                            <span>Animation</span>
+
                             <span >Drama</span>
                             <span >Documentary</span>
-                            <span >News</span>
                             <span >Kids</span>
 
 

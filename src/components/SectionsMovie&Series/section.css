@@ -1,0 +1,79 @@
+.swiper-controls {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 10px;
+  margin-left: 30px;
+}
+
+.swiper-button-next {
+  background-color: #21252996;
+  color: white;
+  border: none;
+  padding: 5px 5px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-weight: bold;
+  font-size: 30px;
+  /* تغيير اللون */
+}
+
+/* زر السابق */
+.swiper-button-prev {
+  background-color: #21252996;
+  color: white;
+  border: none;
+  padding: 5px 5px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-weight: bold;
+  font-size: 30px;
+  /* تغيير اللون */
+}
+
+/* تخصيص الأزرار عند التمرير عليها */
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+  color: #748ea3;
+  /* تغيير اللون عند التمرير */
+}
+
+/* ضبط حجم الأزرار */
+.swiper-button-next::after,
+.swiper-button-prev::after {
+  font-size: 20px;
+}
+
+/* .swiper-button-next,
+.swiper-button-prev {
+  background-color: #21252996;
+  color: white;
+  border: none;
+  padding: 5px 5px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-weight: bold;
+  font-size: 30px;
+}
+
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+  background-color: #212529;
+} */
+
+/* .custom-prev,
+.custom-next {
+ 
+}
+
+.custom-prev:hover,
+.custom-next:hover {
+} */
+
+.div-mediaList {
+  @apply flex items-center justify-center lg:gap-10 xs:gap-3 text-lg;
+}
+
+.div-mediaList span {
+  @apply bg-color2 py-2 px-3 rounded-md shadow-sm shadow-slate-400 hover:text-color3 cursor-pointer hover:bg-color5 duration-700 hover:scale-105;
+}

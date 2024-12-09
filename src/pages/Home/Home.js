@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import './home.css'
+import Sections from "../../components/SectionsMovie&Series/Sections";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/navigation';
@@ -11,7 +12,8 @@ const Home = () => {
     const base_url = 'https://api.themoviedb.org/3'
 
     const [trendAll, setTrendAll] = useState([])
-
+    const [tv, setTv] = useState([])
+    const [movies, setMovies] = useState([])
 
 
     const getTrendAll = useCallback(async () => {
@@ -34,13 +36,52 @@ const Home = () => {
         }
     }, []);
 
+    const getDiscoverMovies = useCallback(async () => {
+        try {
+            const res = await axios.get(
+                `${base_url}/discover/movie?include_adult=false&include_video=true&language=en-US&page=1&sort_by=popularity.desc`,
+                {
+                    headers: {
+                        'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkYThiZDI2NjI3N2IyMzQyMjdlOThlOGExN2I1NTczZiIsIm5iZiI6MTczMjM4OTIwMi43ODkzNzY1LCJzdWIiOiI2NzM2MzBlMmQ0ZmZiYTFlOGIyYWZiY2IiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.2FGRe8HsRJb9HPD7RdlANa7obtrAz_cCYNxj_bxbSUs'
+                        , 'Accept': 'application/json',
+                    },
+                }
+            );
+            const results = res.data.results;
+            // console.log(results)
+            setMovies(results);
 
 
+        } catch (error) {
+            console.error(error);
+        }
+    }, []);
+
+    const getDiscoverSeries = useCallback(async () => {
+        try {
+            const res = await axios.get(
+                `${base_url}/discover/tv?include_adult=false&include_null_first_air_dates=false&language=en-US&page=1&sort_by=popularity.desc&without_genres=10764,10763,10767`,
+                {
+                    headers: {
+                        'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkYThiZDI2NjI3N2IyMzQyMjdlOThlOGExN2I1NTczZiIsIm5iZiI6MTczMjM4OTIwMi43ODkzNzY1LCJzdWIiOiI2NzM2MzBlMmQ0ZmZiYTFlOGIyYWZiY2IiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.2FGRe8HsRJb9HPD7RdlANa7obtrAz_cCYNxj_bxbSUs'
+                        , 'Accept': 'application/json',
+                    },
+                }
+            );
+            const results = res.data.results;
+            console.log(results)
+            setTv(results);
+
+
+        } catch (error) {
+            console.error(error);
+        }
+    }, []);
     useEffect(() => {
         getTrendAll();
-
-
-    }, [getTrendAll,]);
+        getDiscoverMovies()
+        getDiscoverSeries()
+    }, [getTrendAll, getDiscoverMovies, getDiscoverSeries]);
 
 
     return (
@@ -54,12 +95,13 @@ const Home = () => {
                 <div className='   mx-4'>
                     <Swiper
                         modules={[Autoplay]}
-                        spaceBetween={0}
+                        spaceBetween={10}
                         autoplay={{
                             delay: 1000,
                             disableOnInteraction: false,
                         }}
                         loop={true}
+                        Autoplay={true}
                         breakpoints={{
                             320: {
                                 slidesPerView: 2,
@@ -86,7 +128,7 @@ const Home = () => {
                             const title = trend.name || trend.title
 
 
-                            return (<SwiperSlide key={index} className=" duration-500 hover:scale-110 pt-5 pb-3 mx-2">
+                            return (<SwiperSlide key={index} className=" duration-500 hover:scale-110 pt-5 pb-3 ">
 
                                 <span className="absolute bg-green-600 flex items-center justify-center w-9 h-9 rounded-lg m-1 text-gray-200">{specificDigits}</span>
                                 <img src={imgUrl + trend.poster_path} alt='' className='h-[330px] w-[100%] shadow-md shadow-slate-400 rounded-lg' />
@@ -100,6 +142,9 @@ const Home = () => {
 
                     </Swiper>
                 </div>
+
+                <Sections secName={'Movies'} poster={movies} />
+                <Sections secName={'Series'} poster={tv} />
             </div>
 
 
