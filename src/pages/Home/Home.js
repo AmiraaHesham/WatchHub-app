@@ -7,12 +7,13 @@ import 'swiper/css/navigation';
 import axios from "axios";
 import { Autoplay } from 'swiper/modules';
 import { HiTrendingUp } from "react-icons/hi";
+import { Link } from "react-router-dom";
 
 const Home = () => {
     const base_url = 'https://api.themoviedb.org/3'
 
     const [trendAll, setTrendAll] = useState([])
-    const [tv, setTv] = useState([])
+    const [Serieses, setSerieses] = useState([])
     const [movies, setMovies] = useState([])
 
 
@@ -70,7 +71,7 @@ const Home = () => {
             );
             const results = res.data.results;
             console.log(results)
-            setTv(results);
+            setSerieses(results);
 
 
         } catch (error) {
@@ -126,17 +127,22 @@ const Home = () => {
                             const voteAverage = trend.vote_average
                             const specificDigits = Number(voteAverage.toString().slice(0, 3));
                             const title = trend.name || trend.title
+                            const type = trend.hasOwnProperty('title') ? 'movie' : 'tv';
 
+                            const pathDetails = {
+                                id: trend.id,
+                                type: type
+                            };
 
                             return (<SwiperSlide key={index} className=" duration-500 hover:scale-110 pt-5 pb-3 ">
-
-                                <span className="absolute bg-green-600 flex items-center justify-center w-9 h-9 rounded-lg m-1 text-gray-200">{specificDigits}</span>
-                                <img src={imgUrl + trend.poster_path} alt='' className='h-[330px] w-[100%] shadow-md shadow-slate-400 rounded-lg' />
-                                <div className="mt-2  ">
-                                    <span className='text-sm text-color4 flex justify-center'>{title && title.length <= 20 ? title : title.slice(0, 20) + ' ...'}</span>
-
-                                    <span className='xl:text-lg  text-[#515861] flex justify-center '>{date.substr(0, 4)}</span>
-                                </div>
+                                <Link to={pathDetails.type === 'tv' ? '/DetailsSeries' : '/DetailsMovie'} state={pathDetails}>
+                                    <span className="absolute bg-green-600 flex items-center justify-center w-9 h-9 rounded-lg m-1 text-gray-200">{specificDigits}</span>
+                                    <img src={imgUrl + trend.poster_path} alt='' className='h-[330px] w-[100%] shadow-md shadow-slate-400 rounded-lg' />
+                                    <div className="mt-2  ">
+                                        <span className='text-sm text-color4 flex justify-center'>{title && title.length <= 20 ? title : title.slice(0, 20) + ' ...'}</span>
+                                        <span className='xl:text-lg  text-[#515861] flex justify-center '>{date.substr(0, 4)}</span>
+                                    </div>
+                                </Link>
                             </SwiperSlide>)
                         })}
 
@@ -144,7 +150,7 @@ const Home = () => {
                 </div>
 
                 <Sections secName={'Movies'} poster={movies} />
-                <Sections secName={'Series'} poster={tv} />
+                <Sections secName={'Serieses'} poster={Serieses} />
             </div>
 
 
