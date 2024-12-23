@@ -143,13 +143,16 @@ const Home = () => {
                 <div className='   mx-4'>
                     <Swiper
                         modules={[Autoplay]}
+
+                        // slidesPerGroup={1}
                         spaceBetween={10}
-                        autoplay={{
-                            delay: 1000,
+                        autoPlay={{
+                            delay: 500,
                             disableOnInteraction: false,
+
                         }}
+                        autoplay={true}
                         loop={true}
-                        Autoplay={true}
                         breakpoints={{
                             320: {
                                 slidesPerView: 2,

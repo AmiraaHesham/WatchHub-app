@@ -28,6 +28,7 @@ const DetailsSeries = () => {
     }))
 
 
+
     const getDetails = useCallback(async () => {
 
         try {
