@@ -3,7 +3,7 @@ import { MdOutlineFavorite, MdSlowMotionVideo } from "react-icons/md";
 import { FaRegImages } from "react-icons/fa";
 import { MdFavoriteBorder } from "react-icons/md";
 import StarRating from '../StarRating/StarRating';
-import ItemImages from '../ItemImages/ItemImages';
+// import ItemImages from '../ItemImages/ItemImages';
 
 const DetailsItem = (props) => {
     const [isVisible, setIsVisible] = useState(false);
@@ -13,8 +13,7 @@ const DetailsItem = (props) => {
     };
 
     const details = props.details
-    const itemID = props.itemID
-    const itemType = props.itemType
+
     return (
         <div>
             <div className=' grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 xs:grid-cols-1 m-10   '>
@@ -111,7 +110,7 @@ const DetailsItem = (props) => {
                 </div>
 
             </div>
-            {isVisible && <ItemImages itemID={itemID} itemType={itemType} />}
+            {/* {isVisible && <ItemImages itemID={itemID} itemType={itemType} />} */}
 
 
         </div>

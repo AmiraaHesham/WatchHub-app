@@ -29,6 +29,7 @@ const DetailsSeries = () => {
 
 
     const getDetails = useCallback(async () => {
+
         try {
             const res = await axios.get(`${base_url}/${pathDetails.type}/${pathDetails.id}?language=en-US`,
                 {

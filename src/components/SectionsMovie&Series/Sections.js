@@ -61,7 +61,7 @@ const Sections = (props) => {
                             type: type
                         };
 
-                        return <SwiperSlide key={index} className=" duration-700 hover:scale-110  pt-5   ">
+                        return <SwiperSlide key={index} className=" duration-700 hover:scale-110  pt-5  pb-3  ">
                             <Link to={pathDetails.type === 'tv' ? '/DetailsSeries' : '/DetailsMovie'} state={pathDetails}>
                                 <span className="absolute bg-green-600 flex items-center justify-center w-9 h-9 m-1 rounded-lg text-gray-200">{specificDigits}</span>
 
