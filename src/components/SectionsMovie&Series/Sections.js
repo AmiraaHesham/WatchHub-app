@@ -11,19 +11,19 @@ const Sections = (props) => {
     let posters = props.poster
     return (
         <div className='my-20 '>
-            <div className=' flex justify-between my-6'>
-                <div className=' flex gap-20 text-2xl  text-color4  m-4'>
-                    <div>
-                        <span>{props.secName}</span>
-                        <span className='text-4xl mt-[-20px]  flex justify-start  text-color3'>ــــــــــ</span>
-                    </div>
+            <div className=' flex justify-between my-6  text-2xl  text-color4  m-4'>
 
-                    <div className='div-mediaList '>
-                        <span>New</span>
-                        <span>Trending</span>
-                        <span>Popular</span>
-                    </div>
+                <div>
+                    <span>{props.secName}</span>
+                    <span className='text-4xl mt-[-20px]  flex justify-start  text-color3'>ــــــــــ</span>
                 </div>
+
+                <div className='div-mediaList '>
+                    <span>New</span>
+                    <span>Trending</span>
+                    <span>Popular</span>
+                </div>
+
 
             </div>
             <div className='   mx-4 '>
@@ -60,7 +60,8 @@ const Sections = (props) => {
                             id: poster.id,
                             type: type
                         };
-                        return <SwiperSlide key={index} className=" duration-700 hover:scale-110 pt-5 pb-4 ">
+
+                        return <SwiperSlide key={index} className=" duration-700 hover:scale-110  pt-5   ">
                             <Link to={pathDetails.type === 'tv' ? '/DetailsSeries' : '/DetailsMovie'} state={pathDetails}>
                                 <span className="absolute bg-green-600 flex items-center justify-center w-9 h-9 m-1 rounded-lg text-gray-200">{specificDigits}</span>
 
@@ -76,7 +77,7 @@ const Sections = (props) => {
 
                 </Swiper>
             </div>
-        </div>
+        </div >
     )
 }
 

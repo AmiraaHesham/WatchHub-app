@@ -8,12 +8,18 @@ import axios from "axios";
 import { Autoplay } from 'swiper/modules';
 import { HiTrendingUp } from "react-icons/hi";
 import { Link } from "react-router-dom";
-
+import { FaFacebookSquare } from "react-icons/fa";
+import { SiInstagram } from "react-icons/si";
+import { FaSquareXTwitter } from "react-icons/fa6";
 const Home = () => {
     const base_url = 'https://api.themoviedb.org/3'
 
     const [trendAll, setTrendAll] = useState([])
-    const [Serieses, setSerieses] = useState([])
+    const [Series, setSeries] = useState([])
+    const [arabicSeries, setArabicSeries] = useState([])
+    const [animeSeries, setAnimeSeries] = useState([])
+    const [arabicMovies, setArabicMovies] = useState([])
+    const [animeMovies, setAnimeMovies] = useState([])
     const [movies, setMovies] = useState([])
 
 
@@ -39,7 +45,7 @@ const Home = () => {
 
     const getDiscoverMovies = useCallback(async () => {
         try {
-            const res = await axios.get(
+            const movies = await axios.get(
                 `${base_url}/discover/movie?include_adult=false&include_video=true&language=en-US&page=1&sort_by=popularity.desc`,
                 {
                     headers: {
@@ -48,9 +54,30 @@ const Home = () => {
                     },
                 }
             );
-            const results = res.data.results;
+            const arabicMovies = await axios.get(
+                `${base_url}/discover/movie?include_adult=false&include_video=true&language=ar&page=1&sort_by=popularity.desc&with_original_language=ar`,
+                {
+                    headers: {
+                        'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkYThiZDI2NjI3N2IyMzQyMjdlOThlOGExN2I1NTczZiIsIm5iZiI6MTczMjM4OTIwMi43ODkzNzY1LCJzdWIiOiI2NzM2MzBlMmQ0ZmZiYTFlOGIyYWZiY2IiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.2FGRe8HsRJb9HPD7RdlANa7obtrAz_cCYNxj_bxbSUs'
+                        , 'Accept': 'application/json',
+                    },
+                }
+            );
+            const animeMovies = await axios.get(
+                `${base_url}/discover/movie?include_adult=false&include_video=true&language=en-US&page=1&sort_by=popularity.desc&with_genres=16`,
+                {
+                    headers: {
+                        'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkYThiZDI2NjI3N2IyMzQyMjdlOThlOGExN2I1NTczZiIsIm5iZiI6MTczMjM4OTIwMi43ODkzNzY1LCJzdWIiOiI2NzM2MzBlMmQ0ZmZiYTFlOGIyYWZiY2IiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.2FGRe8HsRJb9HPD7RdlANa7obtrAz_cCYNxj_bxbSUs'
+                        , 'Accept': 'application/json',
+                    },
+                }
+            );
+            const moviesRes = movies.data.results;
+            const arabicMoviesRes = arabicMovies.data.results;
             // console.log(results)
-            setMovies(results);
+            setMovies(moviesRes);
+            setArabicMovies(arabicMoviesRes)
+            setAnimeMovies(animeMovies.data.results)
 
 
         } catch (error) {
@@ -60,7 +87,7 @@ const Home = () => {
 
     const getDiscoverSeries = useCallback(async () => {
         try {
-            const res = await axios.get(
+            const Series = await axios.get(
                 `${base_url}/discover/tv?include_adult=false&include_null_first_air_dates=false&language=en-US&page=1&sort_by=popularity.desc&without_genres=10764,10763,10767`,
                 {
                     headers: {
@@ -69,9 +96,29 @@ const Home = () => {
                     },
                 }
             );
-            const results = res.data.results;
+            const arabicSeries = await axios.get(
+                `${base_url}//discover/tv?include_adult=false&include_null_first_air_dates=false&language=ar&page=1&sort_by=popularity.desc&with_original_language=ar`,
+                {
+                    headers: {
+                        'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkYThiZDI2NjI3N2IyMzQyMjdlOThlOGExN2I1NTczZiIsIm5iZiI6MTczMjM4OTIwMi43ODkzNzY1LCJzdWIiOiI2NzM2MzBlMmQ0ZmZiYTFlOGIyYWZiY2IiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.2FGRe8HsRJb9HPD7RdlANa7obtrAz_cCYNxj_bxbSUs'
+                        , 'Accept': 'application/json',
+                    },
+                }
+            )
+            const animeSeries = await axios.get(
+                `${base_url}//discover/tv?include_adult=false&include_null_first_air_dates=false&language=en-US&page=1&sort_by=popularity.desc&with_genres=16`,
+                {
+                    headers: {
+                        'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkYThiZDI2NjI3N2IyMzQyMjdlOThlOGExN2I1NTczZiIsIm5iZiI6MTczMjM4OTIwMi43ODkzNzY1LCJzdWIiOiI2NzM2MzBlMmQ0ZmZiYTFlOGIyYWZiY2IiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.2FGRe8HsRJb9HPD7RdlANa7obtrAz_cCYNxj_bxbSUs'
+                        , 'Accept': 'application/json',
+                    },
+                }
+            )
+            const results = Series.data.results;
             console.log(results)
-            setSerieses(results);
+            setArabicSeries(arabicSeries.data.results)
+            setAnimeSeries(animeSeries.data.results)
+            setSeries(results);
 
 
         } catch (error) {
@@ -150,11 +197,29 @@ const Home = () => {
                 </div>
 
                 <Sections secName={'Movies'} poster={movies} />
-                <Sections secName={'Serieses'} poster={Serieses} />
+                <Sections secName={'Arabic Movies'} poster={arabicMovies} />
+                <Sections secName={'Anime Movies'} poster={animeMovies} />
+                <Sections secName={'Series'} poster={Series} />
+                <Sections secName={'Arabic Series'} poster={arabicSeries} />
+                <Sections secName={'Anime Series'} poster={animeSeries} />
             </div>
 
 
+            <footer >
+                <div className="bg-color5 text-color4 flex justify-center items-center h-[170px] ">
+                    <div >
+                        <h1 className="text-2xl font-bold ml-24 mb-4">Watch Hub</h1>
+                        <h3>Website to watch movies and serise online</h3>
 
+                        <div className="flex gap-5 mt-5 ml-20">
+                            <span className="w-[40px] h-[40px]"><FaFacebookSquare className="w-[100%] h-[100%]" /></span>
+                            <span className="w-[40px] h-[40px]"><SiInstagram className="w-[100%] h-[100%]" /></span>
+                            <span className="w-[40px] h-[40px]"><FaSquareXTwitter className="w-[100%] h-[100%]" />
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </footer>
         </div >
     )
 }
