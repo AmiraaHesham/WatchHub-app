@@ -71,7 +71,7 @@
 } */
 
 .div-mediaList {
-  @apply flex items-center justify-center lg:gap-10 xs:gap-3 text-lg;
+  @apply flex items-center justify-center lg:gap-10 xs:gap-2 md:text-lg xs:text-sm;
 }
 
 .div-mediaList span {
