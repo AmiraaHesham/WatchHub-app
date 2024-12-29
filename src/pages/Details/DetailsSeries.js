@@ -1,9 +1,11 @@
 import React, { useCallback, useEffect, useState } from 'react'
-import { useLocation } from 'react-router';
+import { useLocation, useParams } from 'react-router';
 import DetailsItem from '../../components/ItemDetails/ItemDetails';
 import axios from 'axios';
 
+
 const DetailsSeries = () => {
+    useParams()
     const location = useLocation();
     const pathDetails = location.state
     const imgUrl = 'https://image.tmdb.org/t/p/w500'
@@ -81,8 +83,7 @@ const DetailsSeries = () => {
 
     return (
         <div>
-            <DetailsItem details={details} itemID={pathDetails.id} itemType={pathDetails.type} />
-
+            <DetailsItem details={details} itemType={pathDetails.type} />
         </div >
     )
 }

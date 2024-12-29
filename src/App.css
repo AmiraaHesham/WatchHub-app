@@ -5,6 +5,11 @@
 html {
   scroll-behavior: smooth;
 }
+
 body {
   @apply bg-color1 font-myFont m-0 p-0;
+}
+
+.hide {
+  display: none;
 }

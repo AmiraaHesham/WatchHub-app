@@ -12,6 +12,8 @@ import { Link } from 'react-router-dom';
 
 const Header = () => {
     const btnSearchRef = useRef()
+
+
     return (
         < >
             <div className='div-header'>
@@ -23,12 +25,13 @@ const Header = () => {
                         }}
                         className='btn-dashboard'
 
-                    ><PiListBold /></span>
-                    <div>
+                    ><PiListBold value={'btn-dashboard'} /></span>
+                    <Link to={'/'}>  <div>
                         <span className='text-color3 '>Watch  </span>
 
                         <span >Hub</span>
                     </div>
+                    </Link>
                 </div>
 
 
@@ -125,11 +128,12 @@ const Header = () => {
 
             <div className='div-dashbord xs:hidden'>
                 <div className='sections-dashboard'>
-                    <div className='section '>
-                        <span ><IoHome /></span>
-                        <span>Home</span>
-                    </div>
-
+                    <Link to={'/'}>
+                        <div className='section '>
+                            <span ><IoHome /></span>
+                            <span>Home</span>
+                        </div>
+                    </Link>
 
                     <div className='section '>
                         <span><FaFilm /></span>

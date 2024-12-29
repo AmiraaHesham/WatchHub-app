@@ -4,8 +4,8 @@ import { FaRegImages } from "react-icons/fa";
 import { MdFavoriteBorder } from "react-icons/md";
 import StarRating from '../StarRating/StarRating';
 // import ItemImages from '../ItemImages/ItemImages';
-
 const DetailsItem = (props) => {
+
     const [isVisible, setIsVisible] = useState(false);
 
     const toggleVisibility = () => {
@@ -15,7 +15,7 @@ const DetailsItem = (props) => {
     const details = props.details
 
     return (
-        <div>
+        <div >
             <div className=' grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 xs:grid-cols-1 m-10   '>
                 <div className='xs:flex  xs:items-center  xs:justify-center md:block ' >
                     <div>
@@ -54,21 +54,34 @@ const DetailsItem = (props) => {
                     </div>
                 </div>
                 <div className='xs:mt-10 md:mt-0 mx-5  xl:col-span-3 lg:col-span-2 md:col-span-1 '>
-                    <div className='text-4xl gap-5 flex justify-between items-baseline text-[#e9ecef]  '>
-                        <h2 className=' lg:flex items-center  gap-3'>{details.title}
+                    <div className='text-4xl gap-5 lg:flex justify-between items-baseline text-[#e9ecef]  '>
+                        <div className='md:hidden xs:flex text-center text-[15px] text-color4 justify-center  '>
+                            <div>
+                                <StarRating rating={details.vote_average.toString().slice(0, 3)} />
+                                <h1>{details.vote_average.toString().slice(0, 3)} From {details.vote_count}</h1>
+                            </div>
+                        </div>
+                        <div className=' lg:flex xs:block xs:text-center md:text-start  gap-3 justify-center'>
+                            <h2> {details.title} </h2>
                             <h2 className='text-color4  text-xl'>  ({details.year.slice(0, 4)})  </h2>
-                        </h2>
 
-                        <div className='text-center text-[15px] text-color4'>
-                            <StarRating rating={details.vote_average.toString().slice(0, 3)} />
-                            <h1>{details.vote_average.toString().slice(0, 3)} From {details.vote_count}</h1>
                         </div>
 
+                        <div className='text-center text-[15px] text-color4  xs:hidden md:flex'>
+                            <div >
+                                <StarRating rating={details.vote_average.toString().slice(0, 3)} />
+
+
+                                <h1>{details.vote_average.toString().slice(0, 3)} From {details.vote_count}</h1>
+                            </div>
+                        </div>
                     </div>
-                    <div className='xs:block lg:flex gap-3 lg:mt-0 xs:mt-6'>
+                    {/* <div className='xs:flex items-center justify-center'>
+                        <div> */}
+                    <div className='xs:grid-cols-3 text-center md:flex lg:flex md:gap-3 xs:gap-0 xs:mt-5'>
                         {details.genres}
                     </div>
-                    <div className='mt-10  '>
+                    <div className='mt-10 flex xs:items-center xs:justify-center md:justify-start  '>
                         <button className='flex shadow-sm shadow-slate-400 duration-700 hover:scale-105 gap-3 items-center bg-color2 py-2 px-4 text-xl text-[#e9ecef]  hover:bg-color5 rounded-md'>
                             <MdSlowMotionVideo className='text-color3 text-4xl' /> Watch Trailer</button>
                     </div>
@@ -105,11 +118,14 @@ const DetailsItem = (props) => {
 
                     </div>
 
+                </div>
+            </div>
 
 
+            {/*
                 </div>
 
-            </div>
+            </div> */}
             {/* {isVisible && <ItemImages itemID={itemID} itemType={itemType} />} */}
 
 

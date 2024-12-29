@@ -5,13 +5,15 @@ import Home from './pages/Home/Home';
 
 import { Route, Routes } from 'react-router';
 
+
 function App() {
+
   return (
     <div className="App">
       <Header />
       <Routes>
         <Route path='/' element={<Home />} />
-        <Route path='/DetailsSeries' element={<DetailsSeries />} />
+        <Route path='/DetailsSeries/:id' element={<DetailsSeries />} />
       </Routes>
 
     </div>
