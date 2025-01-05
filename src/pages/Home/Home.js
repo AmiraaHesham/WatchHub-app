@@ -95,7 +95,7 @@ const Home = () => {
                 }
             );
             const arabicSeries = await axios.get(
-                `${base_url}//discover/tv?include_adult=false&include_null_first_air_dates=false&language=ar&page=1&sort_by=popularity.desc&with_original_language=ar`,
+                `${base_url}//discover/tv?include_adult=false&include_null_first_air_dates=false&language=en&page=1&sort_by=popularity.desc&with_original_language=ar`,
                 {
                     headers: {
                         'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkYThiZDI2NjI3N2IyMzQyMjdlOThlOGExN2I1NTczZiIsIm5iZiI6MTczMjM4OTIwMi43ODkzNzY1LCJzdWIiOiI2NzM2MzBlMmQ0ZmZiYTFlOGIyYWZiY2IiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.2FGRe8HsRJb9HPD7RdlANa7obtrAz_cCYNxj_bxbSUs'
