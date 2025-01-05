@@ -81,7 +81,7 @@ const SeriesDetails = () => {
 
     return (
         <div>
-            <DetailsItem details={details} itemType={pathDetails.type} />
+            <DetailsItem details={details} itemType={pathDetails.type} itemID={pathDetails.id} />
         </div >
     )
 }

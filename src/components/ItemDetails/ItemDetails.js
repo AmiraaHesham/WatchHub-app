@@ -4,20 +4,46 @@ import { FaRegImages } from "react-icons/fa";
 import { MdFavoriteBorder } from "react-icons/md";
 import StarRating from '../StarRating/StarRating';
 import { useCallback } from 'react';
+import axios from 'axios';
 // import ItemImages from '../ItemImages/ItemImages';
 const DetailsItem = (props) => {
 
-    // const [isVisible, setIsVisible] = useState(false);
-
-    const toggleVisibility = useCallback(() => {
-        console.log(details.number_of_seasons)
-    }, []);
-
-    useEffect(() => {
-        toggleVisibility()
-    }, [toggleVisibility])
+    const [transAR, setTransAR] = useState('')
 
     const details = props.details
+    const itemID = props.itemID
+    const itemType = props.itemType
+    const base_url = 'https://api.themoviedb.org/3'
+
+    const translationArabic = async () => {
+        const orignalOverview = document.querySelector('#orignalOverview')
+        const transOverview = document.querySelector('#transOverview')
+
+        try {
+            const res = await axios.get(`${base_url}/${itemType}/${itemID}/translations`,
+                {
+                    headers: {
+                        'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkYThiZDI2NjI3N2IyMzQyMjdlOThlOGExN2I1NTczZiIsIm5iZiI6MTczMjM4OTIwMi43ODkzNzY1LCJzdWIiOiI2NzM2MzBlMmQ0ZmZiYTFlOGIyYWZiY2IiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.2FGRe8HsRJb9HPD7RdlANa7obtrAz_cCYNxj_bxbSUs'
+                        , 'Accept': 'application/json',
+                    }
+                }
+            )
+            orignalOverview.classList.toggle('hidden')
+            transOverview.classList.toggle('hidden')
+            for (let i = 0; i <= res.data.translations.length; i++) {
+                if (res.data.translations[i].name === "العربية") {
+                    setTransAR(res.data.translations[i].data.overview)
+
+                    console.log(res.data.translations[i].data.overview)
+                }
+            }
+
+
+        }
+        catch (error) {
+            console.log(error)
+        }
+    }
 
     return (
         <div >
@@ -90,8 +116,18 @@ const DetailsItem = (props) => {
                     </div>
                     <div className='xs:text-sm md:text-xl my-10 text-[#cccecf]'>
                         <h2>overview</h2>
-                        <span className='text-base'>{details.overview}</span>
+                        <span id='orignalOverview' className='text-base'>{details.overview}
+                            <br></br>
+                            <button onClick={translationArabic} className='text-color3 mt-4 text-sm  w-[150px]  '>Translation to Arabic</button>
+
+                        </span>
+                        <span id='transOverview' className='text-base hidden'>{transAR}
+                            <br></br>
+                            <button onClick={translationArabic} className='text-color3 mt-4 text-sm  w-[150px]  '>Orignal Translation</button>
+                        </span>
+
                     </div>
+
                     <div className='mt-10 grid lg:grid-cols-2 xs:grid-cols-1 mb-10  gap-2 xs:text-sm md:text-xl text-color4'>
 
                         <span className=' bg-color2 flex items-center gap-3  py-2 px-3 hover:cursor-default duration-500 hover:scale-95 rounded-md mb-2 shadow-md shadow-slate-400'>
