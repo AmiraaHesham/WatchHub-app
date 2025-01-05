@@ -4,7 +4,7 @@ import DetailsItem from '../../components/ItemDetails/ItemDetails';
 import axios from 'axios';
 
 
-const DetailsSeries = () => {
+const SeriesDetails = () => {
     useParams()
     const location = useLocation();
     const pathDetails = location.state
@@ -25,7 +25,6 @@ const DetailsSeries = () => {
         origin_country: '',
         original_language: '',
         vote_count: '',
-        networks: '',
 
     }))
 
@@ -66,7 +65,6 @@ const DetailsSeries = () => {
                 popularity: res.data.popularity,
                 original_language: res.data.original_language,
                 vote_count: res.data.vote_count,
-                networks: imgUrl + res.data.networks[2] || imgUrl + res.data.networks[0],
             }))
         }
         catch (error) {
@@ -88,4 +86,4 @@ const DetailsSeries = () => {
     )
 }
 
-export default DetailsSeries
+export default SeriesDetails

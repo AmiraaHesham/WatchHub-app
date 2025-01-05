@@ -1,16 +1,21 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { MdOutlineFavorite, MdSlowMotionVideo } from "react-icons/md";
 import { FaRegImages } from "react-icons/fa";
 import { MdFavoriteBorder } from "react-icons/md";
 import StarRating from '../StarRating/StarRating';
+import { useCallback } from 'react';
 // import ItemImages from '../ItemImages/ItemImages';
 const DetailsItem = (props) => {
 
-    const [isVisible, setIsVisible] = useState(false);
+    // const [isVisible, setIsVisible] = useState(false);
 
-    const toggleVisibility = () => {
-        setIsVisible(!isVisible);
-    };
+    const toggleVisibility = useCallback(() => {
+        console.log(details.number_of_seasons)
+    }, []);
+
+    useEffect(() => {
+        toggleVisibility()
+    }, [toggleVisibility])
 
     const details = props.details
 
@@ -26,15 +31,13 @@ const DetailsItem = (props) => {
 
                             <img src={details.img} alt='' className=' w-[100%] h-[100%] rounded-t-lg ' />
                             <div className='bg-color3 mb-10 h-12 flex items-center justify-center rounded-b-lg shadow-md shadow-slate-400'>
-                                <div className='w-16 h-7'>
-                                    <img className='w-[100%] h-[100%]' src={details.networks.logo_path} alt={details.networks.name} />
-                                </div>
+
                             </div>
                         </div>
                         <div className='flex ml-5  gap-5  text-lg text-color4 mt-16 '>
 
                             <button
-                                onClick={toggleVisibility}
+                                // onClick={toggleVisibility}
 
                                 className=' gap-2 flex items-center shadow-sm shadow-slate-400 bg-color2 hover:bg-color5 py-2 px-3 rounded-md duration-500 hover:scale-105'>
                                 <FaRegImages /> Images
@@ -61,7 +64,7 @@ const DetailsItem = (props) => {
                                 <h1>{details.vote_average.toString().slice(0, 3)} From {details.vote_count}</h1>
                             </div>
                         </div>
-                        <div className=' lg:flex xs:block xs:text-center md:text-start  gap-3 justify-center'>
+                        <div className=' lg:flex xs:block xs:text-center items-center md:text-start  gap-3 justify-center'>
                             <h2> {details.title} </h2>
                             <h2 className='text-color4  text-xl'>  ({details.year.slice(0, 4)})  </h2>
 
@@ -90,19 +93,21 @@ const DetailsItem = (props) => {
                         <span className='text-base'>{details.overview}</span>
                     </div>
                     <div className='mt-10 grid lg:grid-cols-2 xs:grid-cols-1 mb-10  gap-2 xs:text-sm md:text-xl text-color4'>
-                        <span className='bg-color2 flex items-center gap-3  py-2 px-3 hover:cursor-default duration-500 hover:scale-95 rounded-md mb-2 shadow-md shadow-slate-400'>
+
+                        <span className=' bg-color2 flex items-center gap-3  py-2 px-3 hover:cursor-default duration-500 hover:scale-95 rounded-md mb-2 shadow-md shadow-slate-400'>
                             <h4 className='text-lg text-color3'>Original name:</h4>
                             {details.original_title}</span>
 
-                        <span className='bg-color2 flex gap-3 items-center py-2 px-3 hover:cursor-default duration-500 hover:scale-95 rounded-md mb-2 shadow-md shadow-slate-400'>
-                            <h4 className='text-lg text-color3'>Seasons:</h4>
+                        <span id='Seasons' className=' bg-color2 flex gap-3 items-center py-2 px-3 hover:cursor-default duration-500 hover:scale-95 rounded-md mb-2 shadow-md shadow-slate-400'>
+                            <h4 className='text-lg text-color3'>{details.number_of_seasons !== undefined ? "Seasons:" : "Runtime"}</h4>
 
-                            {details.number_of_seasons} </span>
+                            {details.number_of_seasons || details.runtime + ' minutes'}
+                        </span>
 
-                        <span className='bg-color2 flex gap-3  items-center py-2 px-3 hover:cursor-default duration-500 hover:scale-95 rounded-md mb-2 shadow-md shadow-slate-400'>
-                            <h4 className='text-lg text-color3'>Episodes: </h4>
+                        <span id='Episodes' className='bg-color2 flex gap-3  items-center py-2 px-3 hover:cursor-default duration-500 hover:scale-95 rounded-md mb-2 shadow-md shadow-slate-400'>
+                            <h4 className='text-lg text-color3'>{details.number_of_episodes !== undefined ? 'Episodes:' : 'Release date'}</h4>
 
-                            {details.number_of_episodes}</span>
+                            {details.number_of_episodes || details.release_date}</span>
 
                         <span className='bg-color2 flex gap-3  items-center py-2 px-3 hover:cursor-default duration-500 hover:scale-95 rounded-md mb-2 shadow-md shadow-slate-400'>
                             <h4 className='text-lg text-color3'>Original language:</h4>

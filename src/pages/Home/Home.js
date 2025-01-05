@@ -8,9 +8,7 @@ import axios from "axios";
 import { Autoplay } from 'swiper/modules';
 import { HiTrendingUp } from "react-icons/hi";
 import { Link } from "react-router-dom";
-import { FaFacebookSquare } from "react-icons/fa";
-import { SiInstagram } from "react-icons/si";
-import { FaSquareXTwitter } from "react-icons/fa6";
+
 const Home = () => {
     const base_url = 'https://api.themoviedb.org/3'
 
@@ -74,7 +72,7 @@ const Home = () => {
             );
             const moviesRes = movies.data.results;
             const arabicMoviesRes = arabicMovies.data.results;
-            // console.log(results)
+            console.log(moviesRes)
             setMovies(moviesRes);
             setArabicMovies(arabicMoviesRes)
             setAnimeMovies(animeMovies.data.results)
@@ -115,7 +113,7 @@ const Home = () => {
                 }
             )
             const results = Series.data.results;
-            console.log(results)
+            // console.log(results)
             setArabicSeries(arabicSeries.data.results)
             setAnimeSeries(animeSeries.data.results)
             setSeries(results);
@@ -185,7 +183,7 @@ const Home = () => {
                             };
 
                             return (<SwiperSlide key={index} className=" duration-500 hover:scale-110 pt-5 pb-3 ">
-                                <Link to={pathDetails.type === 'tv' ? '/DetailsSeries' : '/DetailsMovie'} state={pathDetails}>
+                                <Link to={pathDetails.type === 'tv' ? `/SeriesDetails/${title + '-' + trend.id}` : `/MovieDetails/${title + ' -' + trend.id}`} state={pathDetails}>
                                     <span className="absolute bg-green-600 flex items-center justify-center w-9 h-9 rounded-lg m-1 text-gray-200">{specificDigits}</span>
                                     <img src={imgUrl + trend.poster_path} alt='' className='h-[330px] w-[100%] shadow-md shadow-slate-400 rounded-lg' />
                                     <div className="mt-2  ">
@@ -208,21 +206,7 @@ const Home = () => {
             </div>
 
 
-            <footer >
-                <div className="bg-color5 text-color4 flex justify-center items-center h-[170px] ">
-                    <div >
-                        <h1 className="text-2xl font-bold ml-24 mb-4">Watch Hub</h1>
-                        <h3>Website to watch movies and serise online</h3>
 
-                        <div className="flex gap-5 mt-5 ml-20">
-                            <span className="w-[40px] h-[40px]"><FaFacebookSquare className="w-[100%] h-[100%]" /></span>
-                            <span className="w-[40px] h-[40px]"><SiInstagram className="w-[100%] h-[100%]" /></span>
-                            <span className="w-[40px] h-[40px]"><FaSquareXTwitter className="w-[100%] h-[100%]" />
-                            </span>
-                        </div>
-                    </div>
-                </div>
-            </footer>
         </div >
     )
 }

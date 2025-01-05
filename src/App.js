@@ -1,9 +1,11 @@
 import './App.css';
 import Header from './components/Header/Header';
-import DetailsSeries from './pages/Details/DetailsSeries';
+import SeriesDetails from './pages/Details/SeriesDetails';
+import MovieDetails from './pages/Details/MovieDetails';
 import Home from './pages/Home/Home';
 
 import { Route, Routes } from 'react-router';
+import Footer from './components/Footer/Footer';
 
 
 function App() {
@@ -13,9 +15,10 @@ function App() {
       <Header />
       <Routes>
         <Route path='/' element={<Home />} />
-        <Route path='/DetailsSeries/:id' element={<DetailsSeries />} />
+        <Route path='/SeriesDetails/:id' element={<SeriesDetails />} />
+        <Route path='/MovieDetails/:id' element={<MovieDetails />} />
       </Routes>
-
+      <Footer />
     </div>
   );
 }
