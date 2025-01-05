@@ -28,6 +28,7 @@ const SeriesDetails = () => {
 
     }))
 
+    const [trailerKey, setTrailerKey] = useState()
 
 
     const getDetails = useCallback(async () => {
@@ -74,8 +75,32 @@ const SeriesDetails = () => {
 
     }, [pathDetails])
 
+    // const getTrailerKey = useCallback(async () => {
+    //     try {
+    //         const res = await axios.get(`${base_url}/${pathDetails.type}/${pathDetails.id}/videos`,
+    //             {
+    //                 headers: {
+    //                     'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkYThiZDI2NjI3N2IyMzQyMjdlOThlOGExN2I1NTczZiIsIm5iZiI6MTczMjM4OTIwMi43ODkzNzY1LCJzdWIiOiI2NzM2MzBlMmQ0ZmZiYTFlOGIyYWZiY2IiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.2FGRe8HsRJb9HPD7RdlANa7obtrAz_cCYNxj_bxbSUs'
+    //                     , 'Accept': 'application/json',
+    //                 }
+    //             }
+    //         )
+    //         const trailer = res.data.results.find((vid) => vid.type === 'Trailer')
+    //         if (trailer) {
+    //             setTrailerKey(trailer.key)
+
+    //         }
+    //     }
+    //     catch (error) {
+
+    //         console.log(error)
+    //     }
+
+    // }, [pathDetails])
+
     useEffect(() => {
         getDetails()
+        // getTrailerKey()
     }, [getDetails])
 
 

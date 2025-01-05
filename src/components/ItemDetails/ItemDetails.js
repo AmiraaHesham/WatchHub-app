@@ -3,16 +3,22 @@ import { MdOutlineFavorite, MdSlowMotionVideo } from "react-icons/md";
 import { FaRegImages } from "react-icons/fa";
 import { MdFavoriteBorder } from "react-icons/md";
 import StarRating from '../StarRating/StarRating';
-import { useCallback } from 'react';
 import axios from 'axios';
+import Trailer from '../Trailer/Trailer';
+import { IoMdClose } from 'react-icons/io';
 // import ItemImages from '../ItemImages/ItemImages';
-const DetailsItem = (props) => {
+const DetailsItem = ({ details, itemID, itemType }) => {
 
     const [transAR, setTransAR] = useState('')
 
-    const details = props.details
-    const itemID = props.itemID
-    const itemType = props.itemType
+    const [isVisible, setIsVisible] = useState(false);
+
+    // دالة لتغيير الحالة عند الضغط على الزر
+    const toggleVisibility = () => {
+        setIsVisible(!isVisible); // عكس القيمة الحالية
+    };
+
+
     const base_url = 'https://api.themoviedb.org/3'
 
     const translationArabic = async () => {
@@ -55,7 +61,7 @@ const DetailsItem = (props) => {
                             <span className=" bg-green-600 flex  absolute items-center justify-center w-9 h-9 m-2 rounded-lg text-gray-200">
                                 {details.vote_average.toString().slice(0, 3)}</span>
 
-                            <img src={details.img} alt='' className=' w-[100%] h-[100%] rounded-t-lg ' />
+                            <img src={details.img} loading="lazy" alt='' className=' w-[100%] h-[100%] rounded-t-lg ' />
                             <div className='bg-color3 mb-10 h-12 flex items-center justify-center rounded-b-lg shadow-md shadow-slate-400'>
 
                             </div>
@@ -111,7 +117,9 @@ const DetailsItem = (props) => {
                         {details.genres}
                     </div>
                     <div className='mt-10 flex xs:items-center xs:justify-center md:justify-start  '>
-                        <button className='flex shadow-sm shadow-slate-400 duration-700 hover:scale-105 gap-3 items-center bg-color2 py-2 px-4 text-xl text-[#e9ecef]  hover:bg-color5 rounded-md'>
+                        <button
+                            onClick={toggleVisibility}
+                            className='flex shadow-sm shadow-slate-400 duration-700 hover:scale-105 gap-3 items-center bg-color2 py-2 px-4 text-xl text-[#e9ecef]  hover:bg-color5 rounded-md'>
                             <MdSlowMotionVideo className='text-color3 text-4xl' /> Watch Trailer</button>
                     </div>
                     <div className='xs:text-sm md:text-xl my-10 text-[#cccecf]'>
@@ -161,13 +169,18 @@ const DetailsItem = (props) => {
 
                 </div>
             </div>
-
-
-            {/*
+            {isVisible && (
+                <div>
+                    <button
+                        onClick={toggleVisibility}
+                        className='text-3xl font-semibold text-color3 mx-10'><IoMdClose /></button>
+                    <Trailer type={itemType} id={itemID} />
                 </div>
 
-            </div> */}
-            {/* {isVisible && <ItemImages itemID={itemID} itemType={itemType} />} */}
+            )}
+
+
+
 
 
         </div>
