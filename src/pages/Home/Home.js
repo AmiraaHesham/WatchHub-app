@@ -182,13 +182,13 @@ const Home = () => {
                                 type: type
                             };
 
-                            return (<SwiperSlide key={index} className=" duration-500 hover:scale-110 pt-5 pb-3 hover:pl-10 hover:pr-10">
+                            return (<SwiperSlide key={index} className=" duration-500 hover:scale-110 pt-5 pb-4 hover:pl-[10px] hover:pr-[10px]" >
                                 <Link to={pathDetails.type === 'tv' ? `/SeriesDetails/${title + '-' + trend.id}` : `/MovieDetails/${title + ' -' + trend.id}`} state={pathDetails}>
                                     <span className="absolute bg-green-600 flex items-center justify-center w-9 h-9 rounded-lg m-1 text-gray-200">{specificDigits}</span>
                                     <img src={imgUrl + trend.poster_path} loading="lazy" alt='' className='h-[330px] w-[100%] shadow-md shadow-slate-400 rounded-lg' />
-                                    <div className="mt-2  ">
+                                    <div className="mt-2">
                                         <span className='text-sm text-color4 flex justify-center'>{title && title.length <= 20 ? title : title.slice(0, 20) + ' ...'}</span>
-                                        <span className='xl:text-lg  text-[#515861] flex justify-center '>{date.substr(0, 4)}</span>
+                                        <span className='xl:text-lg  text-[#515861] flex justify-center  '>{date.substr(0, 4)}</span>
                                     </div>
                                 </Link>
                             </SwiperSlide>)

@@ -84,7 +84,7 @@ const Cast = ({ id, type }) => {
                         <img src={imgUrl + cast.profile_path} loading="lazy" alt='' className='h-[300px] w-[100%] shadow-md shadow-slate-400 rounded-lg' />
                         <div className="mt-2  ">
                             <span className='text-sm text-color4 flex justify-center'>{cast.name}</span>
-                            <span className='xl:text-lg  text-[#515861] flex justify-center '>{cast.character}</span>
+                            <span className='text-lg  text-[#515861] flex justify-center '>{cast.character}</span>
                         </div>
                     </SwiperSlide>)
                 })}
