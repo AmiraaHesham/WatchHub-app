@@ -6,6 +6,7 @@ import StarRating from '../StarRating/StarRating';
 import axios from 'axios';
 import Trailer from '../Trailer/Trailer';
 import { IoMdClose } from 'react-icons/io';
+import Cast from '../Cast/Cast';
 // import ItemImages from '../ItemImages/ItemImages';
 const DetailsItem = ({ details, itemID, itemType }) => {
 
@@ -179,7 +180,7 @@ const DetailsItem = ({ details, itemID, itemType }) => {
 
             )}
 
-
+            <Cast type={itemType} id={itemID} />
 
 
 

@@ -30,12 +30,12 @@ const Trailer = ({ type, id }) => {
         fetchTrailer();
     }, [type, id]);
     return (
-        <div className='flex justify-center items-center h-screen pb-10'>
+        <div className='flex justify-center items-center pb-10'>
             <iframe
                 src={`https://www.youtube.com/embed/${trailerKey}`}
                 title="Movie Trailer"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                className=' w-[85%] h-[100%] rounded-md '
+                className=' w-[85%] h-screen rounded-md '
             ></iframe>
         </div>
     )
