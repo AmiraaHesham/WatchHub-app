@@ -9,6 +9,7 @@ import AllMovies from './pages/Movies/AllMovies';
 import ArabicMovies from './pages/Movies/ArabicMovies';
 import AnimeMovies from './pages/Movies/AnimeMovies';
 import AllSeries from './pages/Series/AllSeries';
+import ArabicSeries from './pages/Series/ArabicSeries';
 
 function App() {
 
@@ -23,6 +24,7 @@ function App() {
         <Route path='/Arabic Movies' element={<ArabicMovies />} />
         <Route path='/Anime Movies' element={<AnimeMovies />} />
         <Route path='/Series' element={<AllSeries />} />
+        <Route path='/Arabic Series' element={<ArabicSeries />} />
       </Routes>
       <Footer />
     </div>
