@@ -55,7 +55,7 @@ const ComponentMovies = ({ type, name }) => {
     }
     return (
         <div>
-            <h2 className="mx-6 flex font-semibold my-4 xl:text-3xl xs:text-2xl cursor-default gap-3 text-color3">
+            <h2 className="mx-6 flex font-semibold my-6 xl:text-3xl xs:text-2xl cursor-default gap-3 text-color3">
                 {name}
             </h2>
             <hr />
