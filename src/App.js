@@ -6,6 +6,7 @@ import Home from './pages/Home/Home';
 import { Route, Routes } from 'react-router';
 import Footer from './components/Footer/Footer';
 import AllMovies from './pages/Movies/AllMovies';
+import ArabicMovies from './pages/Movies/ArabicMovies';
 
 function App() {
 
@@ -17,6 +18,7 @@ function App() {
         <Route path='/SeriesDetails/:id' element={<SeriesDetails />} />
         <Route path='/MovieDetails/:id' element={<MovieDetails />} />
         <Route path='/Movies' element={<AllMovies />} />
+        <Route path='/Arabic Movies' element={<ArabicMovies />} />
       </Routes>
       <Footer />
     </div>

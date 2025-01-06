@@ -8,7 +8,6 @@ import Trailer from '../Trailer/Trailer';
 import { IoMdClose } from 'react-icons/io';
 import Cast from '../Cast/Cast';
 import { base_url } from "../../config";
-import { BiSolidCameraMovie } from 'react-icons/bi';
 import { ImFilm } from 'react-icons/im';
 
 // import ItemImages from '../ItemImages/ItemImages';
