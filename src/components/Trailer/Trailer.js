@@ -35,7 +35,7 @@ const Trailer = ({ type, id }) => {
                 src={`https://www.youtube.com/embed/${trailerKey}`}
                 title="Movie Trailer"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                className=' w-[85%] h-[600px] rounded-md '
+                className=' w-[85%] md:h-[600px] xs:h-[450px] rounded-md '
             ></iframe>
         </div>
     )
