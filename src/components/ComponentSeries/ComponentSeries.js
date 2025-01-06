@@ -2,15 +2,17 @@ import React, { useCallback, useEffect, useRef, useState } from 'react'
 import { base_url, base_url_img } from '../../config'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
-const ComponentMovies = ({ type, name }) => {
 
-    const [movies, setMovies] = useState([])
+const ComponentSeries = ({ type, name }) => {
+
+    const [series, setSeries] = useState([])
     const numPage = useRef(1);
 
-    const fetchMovies = useCallback(async () => {
+    const fetchSeries = useCallback(async () => {
         try {
             const res = await axios.get(
-                `${base_url}/discover/movie?include_adult=false&include_video=true&language=en-US&page=1&sort_by=popularity.desc${type}`,
+
+                `${base_url}/discover/tv?include_adult=false&include_null_first_air_dates=false&language=en&page=1&sort_by=popularity.desc${type}`,
                 {
                     headers: {
                         'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkYThiZDI2NjI3N2IyMzQyMjdlOThlOGExN2I1NTczZiIsIm5iZiI6MTczMjM4OTIwMi43ODkzNzY1LCJzdWIiOiI2NzM2MzBlMmQ0ZmZiYTFlOGIyYWZiY2IiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.2FGRe8HsRJb9HPD7RdlANa7obtrAz_cCYNxj_bxbSUs'
@@ -18,8 +20,8 @@ const ComponentMovies = ({ type, name }) => {
                     },
                 }
             );
-            const moviesRes = res.data.results
-            setMovies(moviesRes)
+            const seriesRes = res.data.results
+            setSeries(seriesRes)
 
         } catch (error) {
             console.error(error);
@@ -29,15 +31,15 @@ const ComponentMovies = ({ type, name }) => {
 
     useEffect(() => {
 
-        fetchMovies()
-    }, [fetchMovies])
+        fetchSeries()
+    }, [fetchSeries])
 
-    const moreMovies = async () => {
+    const moreSeries = async () => {
         numPage.current += 1
-        console.log(numPage.current)
         try {
             const res = await axios.get(
-                `${base_url}/discover/movie?include_adult=false&include_video=true&language=en-US&page=${numPage.current}&sort_by=popularity.desc${type}`,
+
+                `${base_url}/discover/tv?include_adult=false&include_null_first_air_dates=false&language=en&page=${numPage.current}&sort_by=popularity.desc${type}`,
                 {
                     headers: {
                         'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkYThiZDI2NjI3N2IyMzQyMjdlOThlOGExN2I1NTczZiIsIm5iZiI6MTczMjM4OTIwMi43ODkzNzY1LCJzdWIiOiI2NzM2MzBlMmQ0ZmZiYTFlOGIyYWZiY2IiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.2FGRe8HsRJb9HPD7RdlANa7obtrAz_cCYNxj_bxbSUs'
@@ -45,11 +47,12 @@ const ComponentMovies = ({ type, name }) => {
                     },
                 }
             );
-            const moreMovies = res.data.results
-            setMovies((prevMovies) => [...prevMovies, ...moreMovies])
-            console.log(moreMovies)
+            const moreSeries = res.data.results
+            setSeries((prevSeries) => [...prevSeries, ...moreSeries])
+            console.log(moreSeries)
 
-        } catch (error) {
+        }
+        catch (error) {
             console.error(error);
         }
     }
@@ -61,27 +64,27 @@ const ComponentMovies = ({ type, name }) => {
             <hr />
             <div className="flex justify-center items-center my-10">
                 <div className="w-[90%] grid xl:grid-cols-5 lg:grid-cols-4 md:grid-cols-3 xs:grid-cols-2">
-                    {movies.map((movie, index) => {
-                        const date = movie.first_air_date || movie.release_date;
-                        const voteAverage = movie.vote_average;
-                        const title = movie.title || movie.name;
+                    {series.map((series, index) => {
+                        const date = series.first_air_date || series.release_date;
+                        const voteAverage = series.vote_average;
+                        const title = series.title || series.name;
                         const specificDigits = Number(voteAverage.toString().slice(0, 3));
                         const pathDetails = {
-                            id: movie.id,
-                            type: 'movie',
+                            id: series.id,
+                            type: 'tv',
                         };
 
                         return (
                             <div className="mx-4 my-3 duration-500 hover:scale-110 " key={index}>
                                 <Link
-                                    to={`/MovieDetails/${title + '-' + movie.id}`}
+                                    to={`/SeriesDetails/${title + '-' + series.id}`}
                                     state={pathDetails}
                                 >
                                     <span className="absolute bg-green-600 flex items-center justify-center w-9 h-9 m-1 rounded-lg text-gray-200">
                                         {specificDigits}
                                     </span>
                                     <img
-                                        src={`${base_url_img}${movie.poster_path}`}
+                                        src={`${base_url_img}${series.poster_path}`}
                                         alt=""
                                         className="h-[330px] w-[100%] shadow-md shadow-slate-400 rounded-lg"
                                         loading="lazy"
@@ -102,13 +105,13 @@ const ComponentMovies = ({ type, name }) => {
                 </div>
             </div>
             <div
-                onClick={moreMovies}
+                onClick={moreSeries}
                 className='flex justify-center my-7 '>
                 <button className='bg-color2 w-[30%] rounded-md text-color4 text-xl font-semibold py-1'>More</button>
 
             </div>
         </div>
-    );
+    )
 }
 
-export default ComponentMovies
+export default ComponentSeries

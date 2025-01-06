@@ -8,6 +8,7 @@ import Footer from './components/Footer/Footer';
 import AllMovies from './pages/Movies/AllMovies';
 import ArabicMovies from './pages/Movies/ArabicMovies';
 import AnimeMovies from './pages/Movies/AnimeMovies';
+import AllSeries from './pages/Series/AllSeries';
 
 function App() {
 
@@ -21,6 +22,7 @@ function App() {
         <Route path='/Movies' element={<AllMovies />} />
         <Route path='/Arabic Movies' element={<ArabicMovies />} />
         <Route path='/Anime Movies' element={<AnimeMovies />} />
+        <Route path='/Series' element={<AllSeries />} />
       </Routes>
       <Footer />
     </div>

@@ -62,6 +62,7 @@ const Home = () => {
                 }
             );
             const animeMovies = await axios.get(
+
                 `${base_url}/discover/movie?include_adult=false&include_video=true&language=en-US&page=1&sort_by=popularity.desc&with_genres=16`,
                 {
                     headers: {
