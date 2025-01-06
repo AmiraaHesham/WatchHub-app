@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { MdOutlineFavorite, MdSlowMotionVideo } from "react-icons/md";
+import { MdLiveTv, MdOutlineFavorite, MdSlowMotionVideo } from "react-icons/md";
 import { FaRegImages } from "react-icons/fa";
 import { MdFavoriteBorder } from "react-icons/md";
 import StarRating from '../StarRating/StarRating';
@@ -8,6 +8,8 @@ import Trailer from '../Trailer/Trailer';
 import { IoMdClose } from 'react-icons/io';
 import Cast from '../Cast/Cast';
 import { base_url } from "../../config";
+import { BiSolidCameraMovie } from 'react-icons/bi';
+import { ImFilm } from 'react-icons/im';
 
 // import ItemImages from '../ItemImages/ItemImages';
 const DetailsItem = ({ details, itemID, itemType }) => {
@@ -19,8 +21,6 @@ const DetailsItem = ({ details, itemID, itemType }) => {
     const toggleVisibility = () => {
         setIsVisible(!isVisible);
     };
-
-
 
     const translationArabic = async () => {
         const orignalOverview = document.querySelector('#orignalOverview')
@@ -63,7 +63,9 @@ const DetailsItem = ({ details, itemID, itemType }) => {
                                 {details.vote_average.toString().slice(0, 3)}</span>
 
                             <img src={details.img} loading="lazy" alt='' className=' w-[100%] h-[100%] rounded-t-lg ' />
-                            <div className='bg-color3 mb-10 h-12 flex items-center justify-center rounded-b-lg shadow-md shadow-slate-400'>
+                            <div className='bg-color3 mb-10 h-12 flex items-center justify-center rounded-b-lg shadow-md shadow-slate-400 text-color2 text-4xl '>
+                                {itemType === 'movie' ? <ImFilm /> : <MdLiveTv />
+                                }
 
                             </div>
                         </div>
