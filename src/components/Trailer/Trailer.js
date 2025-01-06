@@ -1,10 +1,9 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
+import { base_url } from "../../config";
 
 const Trailer = ({ type, id }) => {
     const [trailerKey, setTrailerKey] = useState()
-    const base_url = 'https://api.themoviedb.org/3'
-
 
     useEffect(() => {
         const fetchTrailer = async () => {

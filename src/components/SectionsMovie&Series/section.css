@@ -71,9 +71,9 @@
 } */
 
 .div-mediaList {
-  @apply flex items-center justify-center lg:gap-10 xs:gap-2 md:text-lg xs:text-sm;
+  @apply flex items-center justify-center lg:gap-7 xs:gap-2 md:text-lg xs:text-sm;
 }
 
-.div-mediaList span {
+.div-mediaList button {
   @apply bg-color2 py-2 px-3 rounded-md shadow-sm shadow-slate-400 hover:text-color3 cursor-pointer hover:bg-color5 duration-700 hover:scale-105;
 }

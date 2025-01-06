@@ -2,14 +2,14 @@ import React, { useCallback, useEffect, useState } from 'react'
 import { useLocation, useParams } from 'react-router';
 import DetailsItem from '../../components/ItemDetails/ItemDetails';
 import axios from 'axios';
+import { base_url, base_url_img } from "../../config";
 
 
 const SeriesDetails = () => {
     useParams()
     const location = useLocation();
     const pathDetails = location.state
-    const imgUrl = 'https://image.tmdb.org/t/p/w500'
-    const base_url = 'https://api.themoviedb.org/3'
+
 
     const [details, setDetails] = useState(({
         img: '',
@@ -28,7 +28,6 @@ const SeriesDetails = () => {
 
     }))
 
-    const [trailerKey, setTrailerKey] = useState()
 
 
     const getDetails = useCallback(async () => {
@@ -46,7 +45,7 @@ const SeriesDetails = () => {
 
 
             setDetails(() => ({
-                img: imgUrl + res.data.poster_path,
+                img: base_url_img + res.data.poster_path,
                 title: res.data.name,
                 overview: res.data.overview,
                 vote_average: res.data.vote_average,

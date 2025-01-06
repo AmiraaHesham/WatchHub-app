@@ -53,12 +53,10 @@ const Header = () => {
                         }} id='menu-movie'
                             className='div-menus hidden'>
 
-                            <span >Action</span>
-                            <span >Comedy</span>
-                            <span>Animation</span>
-                            <span>Family</span>
-                            <span>History</span>
-                            <span>Romance</span>
+                            <span >New</span>
+                            <span >Trending</span>
+                            <span>Popular</span>
+
                         </div>
                     </div>
 
@@ -79,13 +77,9 @@ const Header = () => {
                             }}
                             id='menu-series'
                             className='hidden div-menus'>
-                            <span >Action</span>
-                            <span >Comedy</span>
-                            <span>Animation</span>
-
-                            <span >Drama</span>
-                            <span >Documentary</span>
-                            <span >Kids</span>
+                            <span >New</span>
+                            <span >Trending</span>
+                            <span>Popular</span>
 
 
                         </div>
@@ -141,12 +135,9 @@ const Header = () => {
                     </div>
 
                     <div className='section-list'>
-                        <span >Action</span>
-                        <span >Comedy</span>
-                        <span>Animation</span>
-                        <span>Family</span>
-                        <span>History</span>
-                        <span>Romance</span>
+                        <span >New</span>
+                        <span >Trending</span>
+                        <span>Popular</span>
 
 
                     </div>
@@ -157,13 +148,9 @@ const Header = () => {
                         </div>
 
                         <div className='section-list'>
-                            <span >Action</span>
-                            <span >Comedy</span>
-                            <span >Drama</span>
-                            <span >Family</span>
-                            <span >Animation</span>
-                            <span >Kids</span>
-
+                            <span >New</span>
+                            <span >Trending</span>
+                            <span>Popular</span>
 
 
                         </div>

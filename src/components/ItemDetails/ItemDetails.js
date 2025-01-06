@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { MdOutlineFavorite, MdSlowMotionVideo } from "react-icons/md";
 import { FaRegImages } from "react-icons/fa";
 import { MdFavoriteBorder } from "react-icons/md";
@@ -7,6 +7,8 @@ import axios from 'axios';
 import Trailer from '../Trailer/Trailer';
 import { IoMdClose } from 'react-icons/io';
 import Cast from '../Cast/Cast';
+import { base_url } from "../../config";
+
 // import ItemImages from '../ItemImages/ItemImages';
 const DetailsItem = ({ details, itemID, itemType }) => {
 
@@ -14,13 +16,11 @@ const DetailsItem = ({ details, itemID, itemType }) => {
 
     const [isVisible, setIsVisible] = useState(false);
 
-    // دالة لتغيير الحالة عند الضغط على الزر
     const toggleVisibility = () => {
-        setIsVisible(!isVisible); // عكس القيمة الحالية
+        setIsVisible(!isVisible);
     };
 
 
-    const base_url = 'https://api.themoviedb.org/3'
 
     const translationArabic = async () => {
         const orignalOverview = document.querySelector('#orignalOverview')

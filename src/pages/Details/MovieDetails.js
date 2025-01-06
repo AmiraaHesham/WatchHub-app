@@ -2,13 +2,13 @@ import React, { useCallback, useEffect, useState } from 'react'
 import { useLocation, useParams } from 'react-router';
 import DetailsItem from '../../components/ItemDetails/ItemDetails';
 import axios from 'axios';
+import { base_url, base_url_img } from "../../config";
 
 const MovieDetails = () => {
     useParams()
     const location = useLocation();
     const pathDetails = location.state
-    const imgUrl = 'https://image.tmdb.org/t/p/w500'
-    const base_url = 'https://api.themoviedb.org/3'
+
 
     const [details, setDetails] = useState(({
         img: '',
@@ -26,7 +26,6 @@ const MovieDetails = () => {
         release_date: ''
 
     }))
-    const [trailerKey, setTrailerKey] = useState()
 
     const getDetails = useCallback(async () => {
 
@@ -43,7 +42,7 @@ const MovieDetails = () => {
 
 
             setDetails(() => ({
-                img: imgUrl + res.data.poster_path,
+                img: base_url_img + res.data.poster_path,
                 title: res.data.title,
                 overview: res.data.overview,
                 vote_average: res.data.vote_average,
@@ -73,25 +72,8 @@ const MovieDetails = () => {
 
     }, [pathDetails])
 
-    // const getTrailerKey = useCallback(async () => {
-    //     const res = await axios.get(`${base_url}/${pathDetails.type}/${pathDetails.id}/videos`,
-    //         {
-    //             headers: {
-    //                 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkYThiZDI2NjI3N2IyMzQyMjdlOThlOGExN2I1NTczZiIsIm5iZiI6MTczMjM4OTIwMi43ODkzNzY1LCJzdWIiOiI2NzM2MzBlMmQ0ZmZiYTFlOGIyYWZiY2IiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.2FGRe8HsRJb9HPD7RdlANa7obtrAz_cCYNxj_bxbSUs'
-    //                 , 'Accept': 'application/json',
-    //             }
-    //         }
-    //     )
-    //     const trailer = res.data.results.find((vid) => vid.type === 'Trailer')
-    //     if (trailer) {
-    //         setTrailerKey(trailer.key)
-
-    //     }
-    // }, [pathDetails])
-
     useEffect(() => {
         getDetails()
-        // getTrailerKey()
     }, [getDetails])
 
     return (

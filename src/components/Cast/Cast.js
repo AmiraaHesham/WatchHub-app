@@ -3,10 +3,10 @@ import React, { useEffect, useState } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/navigation';
+import { base_url, base_url_img } from "../../config";
 
 const Cast = ({ id, type }) => {
     const [cast, setCast] = useState([])
-    const base_url = 'https://api.themoviedb.org/3'
 
     useEffect(() => {
         const fetchCast = async () => {
@@ -81,7 +81,7 @@ const Cast = ({ id, type }) => {
                     // };
 
                     return (<SwiperSlide key={index} >
-                        <img src={imgUrl + cast.profile_path} loading="lazy" alt='' className='h-[300px] w-[100%] shadow-md shadow-slate-400 rounded-lg' />
+                        <img src={base_url_img + cast.profile_path} loading="lazy" alt='' className='h-[300px] w-[100%] shadow-md shadow-slate-400 rounded-lg' />
                         <div className="mt-2  ">
                             <span className='text-sm text-color4 flex justify-center'>{cast.name}</span>
                             <span className='text-lg  text-[#515861] flex justify-center '>{cast.character}</span>

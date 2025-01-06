@@ -1,32 +1,25 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import './section.css'
 import { Link } from 'react-router-dom';
+import { base_url_img } from "../../config";
 
-const Sections = (props) => {
+const Sections = ({ posters, secName }) => {
 
-    let posters = props.poster
     return (
         <div className='my-20 '>
             <div className=' flex justify-between my-6  text-2xl  text-color4  m-4'>
 
-                <div>
-                    <span>{props.secName}</span>
+                <Link to={`/${secName}`}><div>
+                    <span>{secName}</span>
                     <span className='text-4xl mt-[-20px]  flex justify-start  text-color3'>ــــــــــ</span>
-                </div>
-
-                <div className='div-mediaList '>
-                    <span>New</span>
-                    <span>Trending</span>
-                    <span>Popular</span>
-                </div>
-
+                </div></Link>
 
             </div>
-            <div className='   mx-4 '>
+            <div className=' mx-4 '>
                 <Swiper
                     modules={[Navigation]}
                     spaceBetween={10}
@@ -48,14 +41,13 @@ const Sections = (props) => {
                 >
 
                     {posters.map((poster, index) => {
-                        const posterImgUrl = `https://image.tmdb.org/t/p/w500${poster.poster_path}`;
+
                         const date = poster.first_air_date || poster.release_date
                         const voteAverage = poster.vote_average
                         const title = poster.title || poster.name
                         const specificDigits = Number(voteAverage.toString().slice(0, 3));
 
                         const type = poster.hasOwnProperty('title') ? 'movie' : 'tv';
-
                         const pathDetails = {
                             id: poster.id,
                             type: type
@@ -65,7 +57,7 @@ const Sections = (props) => {
                             <Link to={pathDetails.type === 'tv' ? `/SeriesDetails/${title + '-' + poster.id}` : `/MovieDetails/${title + ' -' + poster.id}`} state={pathDetails}>
                                 <span className="absolute bg-green-600 flex items-center justify-center w-9 h-9 m-1 rounded-lg text-gray-200">{specificDigits}</span>
 
-                                <img src={posterImgUrl} loading="lazy" alt='' className='h-[330px] w-[100%]  shadow-md shadow-slate-400 rounded-lg ' />
+                                <img src={base_url_img + poster.poster_path} loading="lazy" alt='' className='h-[330px] w-[100%]  shadow-md shadow-slate-400 rounded-lg ' />
                                 <div className="mt-2 ">
                                     <span className=' text-sm  text-color4 flex justify-center'>{title && title.length <= 20 ? title : title.slice(0, 20) + ' ...'}</span>
                                     <span className='text-sm  text-[#515861] flex justify-center '>{date.substr(0, 4)}</span>

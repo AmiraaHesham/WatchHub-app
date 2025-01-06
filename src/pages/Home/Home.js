@@ -8,9 +8,9 @@ import axios from "axios";
 import { Autoplay } from 'swiper/modules';
 import { HiTrendingUp } from "react-icons/hi";
 import { Link } from "react-router-dom";
+import { base_url, base_url_img } from "../../config";
 
 const Home = () => {
-    const base_url = 'https://api.themoviedb.org/3'
 
     const [trendAll, setTrendAll] = useState([])
     const [Series, setSeries] = useState([])
@@ -170,7 +170,6 @@ const Home = () => {
                     >
                         {trendAll.map((trend, index) => {
 
-                            const imgUrl = 'https://image.tmdb.org/t/p/w500';
                             const date = trend.first_air_date || trend.release_date
                             const voteAverage = trend.vote_average
                             const specificDigits = Number(voteAverage.toString().slice(0, 3));
@@ -185,7 +184,7 @@ const Home = () => {
                             return (<SwiperSlide key={index} className=" duration-500 hover:scale-110 pt-5 pb-4 hover:pl-[10px] hover:pr-[10px]" >
                                 <Link to={pathDetails.type === 'tv' ? `/SeriesDetails/${title + '-' + trend.id}` : `/MovieDetails/${title + ' -' + trend.id}`} state={pathDetails}>
                                     <span className="absolute bg-green-600 flex items-center justify-center w-9 h-9 rounded-lg m-1 text-gray-200">{specificDigits}</span>
-                                    <img src={imgUrl + trend.poster_path} loading="lazy" alt='' className='h-[330px] w-[100%] shadow-md shadow-slate-400 rounded-lg' />
+                                    <img src={base_url_img + trend.poster_path} loading="lazy" alt='' className='h-[330px] w-[100%] shadow-md shadow-slate-400 rounded-lg' />
                                     <div className="mt-2">
                                         <span className='text-sm text-color4 flex justify-center'>{title && title.length <= 20 ? title : title.slice(0, 20) + ' ...'}</span>
                                         <span className='xl:text-lg  text-[#515861] flex justify-center  '>{date.substr(0, 4)}</span>
@@ -197,12 +196,12 @@ const Home = () => {
                     </Swiper>
                 </div>
 
-                <Sections secName={'Movies'} poster={movies} />
-                <Sections secName={'Arabic Movies'} poster={arabicMovies} />
-                <Sections secName={'Anime Movies'} poster={animeMovies} />
-                <Sections secName={'Series'} poster={Series} />
-                <Sections secName={'Arabic Series'} poster={arabicSeries} />
-                <Sections secName={'Anime Series'} poster={animeSeries} />
+                <Sections secName={'Movies'} posters={movies} type={'movies'} />
+                <Sections secName={'Arabic Movies'} posters={arabicMovies} type={'movies'} />
+                <Sections secName={'Anime Movies'} posters={animeMovies} type={'movies'} />
+                <Sections secName={'Series'} posters={Series} type={'Series'} />
+                <Sections secName={'Arabic Series'} posters={arabicSeries} type={'Series'} />
+                <Sections secName={'Anime Series'} posters={animeSeries} type={'Series'} />
             </div>
 
 
