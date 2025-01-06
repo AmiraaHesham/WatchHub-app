@@ -6,8 +6,11 @@ const Footer = () => {
     return (
         <div>
             <footer >
-                <div className="bg-color5 text-color4 flex justify-center items-center h-[170px] ">
+                <hr className='text-color2'></hr>
+
+                <div className="bg-color5 text-color4 flex justify-center items-center h-[170px]   ">
                     <div >
+
                         <h1 className="text-2xl font-bold ml-24 mb-4">Watch Hub</h1>
                         <h3>Website to watch movies and serise online</h3>
 

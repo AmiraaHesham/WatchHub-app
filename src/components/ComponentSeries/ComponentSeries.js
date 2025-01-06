@@ -107,7 +107,7 @@ const ComponentSeries = ({ type, name }) => {
             <div
                 onClick={moreSeries}
                 className='flex justify-center my-7 '>
-                <button className='bg-color2 w-[30%] rounded-md text-color4 text-xl font-semibold py-1'>More</button>
+                <button className='bg-color2 w-[30%] rounded-md text-color4 text-xl font-semibold py-1 shadow-md shadow-slate-500 '>More</button>
 
             </div>
         </div>
