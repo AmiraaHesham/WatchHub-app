@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useRef, useState } from 'react'
 import { base_url, base_url_img } from '../../config'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
+import LoadingSkeleton from '../LoadingSkeleton/LoadingSkeleton'
 const ComponentMovies = ({ type, name }) => {
 
     const [movies, setMovies] = useState([])
@@ -80,13 +81,14 @@ const ComponentMovies = ({ type, name }) => {
                                     <span className="absolute bg-green-600 flex items-center justify-center w-9 h-9 m-1 rounded-lg text-gray-200">
                                         {specificDigits}
                                     </span>
-                                    <img
-                                        src={`${base_url_img}${movie.poster_path}`}
+                                    <LoadingSkeleton src={`${base_url_img}${movie.poster_path}`} alt="" />
+                                    {/* <img
+                                       
                                         alt=""
                                         className="h-[330px] w-[100%] shadow-md shadow-slate-400 rounded-lg"
                                         loading="lazy"
                                         style={{ aspectRatio: '2/3' }}
-                                    />
+                                    /> */}
                                     <div className="mt-2">
                                         <span className="text-sm text-color4 flex justify-center">
                                             {title && title.length <= 20 ? title : title.slice(0, 20) + '...'}

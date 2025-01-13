@@ -6,6 +6,7 @@ import 'swiper/css/navigation';
 import './section.css'
 import { Link } from 'react-router-dom';
 import { base_url_img } from "../../config";
+import LoadingSkeleton from '../LoadingSkeleton/LoadingSkeleton';
 
 const Sections = ({ posters, secName }) => {
 
@@ -56,8 +57,8 @@ const Sections = ({ posters, secName }) => {
                         return <SwiperSlide key={index} className=" duration-700 hover:scale-110  pt-5 pb-4  hover:pl-[10px] hover:pr-[10px]  ">
                             <Link to={pathDetails.type === 'tv' ? `/SeriesDetails/${title + '-' + poster.id}` : `/MovieDetails/${title + ' -' + poster.id}`} state={pathDetails}>
                                 <span className="absolute bg-green-600 flex items-center justify-center w-9 h-9 m-1 rounded-lg text-gray-200">{specificDigits}</span>
-
-                                <img src={base_url_img + poster.poster_path} loading="lazy" alt='' className='h-[330px] w-[100%]  shadow-md shadow-slate-400 rounded-lg ' />
+                                <LoadingSkeleton src={base_url_img + poster.poster_path} />
+                                {/* <img  loading="lazy" alt='' className='h-[330px] w-[100%]  shadow-md shadow-slate-400 rounded-lg ' /> */}
                                 <div className="mt-2 ">
                                     <span className=' text-sm  text-color4 flex justify-center'>{title && title.length <= 20 ? title : title.slice(0, 20) + ' ...'}</span>
                                     <span className='text-sm  text-[#515861] flex justify-center '>{date.substr(0, 4)}</span>
