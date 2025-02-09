@@ -1,10 +1,14 @@
-import React from 'react'
-import ComponentSeries from '../../components/ComponentSeries/ComponentSeries'
+import React, { lazy, Suspense } from 'react'
+const ComponentSeries = lazy(() => import('../../components/ComponentSeries/ComponentSeries'));
 
 const AnimeSeries = () => {
     return (
         <div>
-            <ComponentSeries type={'&with_genres=16'} name={'Anime Series'} />
+            <Suspense fallback={<div>Loading...</div>}>
+
+                <ComponentSeries type={'&with_genres=16'} name={'Anime Series'} />
+            </Suspense>
+
         </div>
     )
 }

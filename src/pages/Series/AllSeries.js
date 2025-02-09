@@ -1,10 +1,13 @@
-import React from 'react'
-import ComponentSeries from '../../components/ComponentSeries/ComponentSeries'
+import React, { lazy, Suspense } from 'react'
+
+const ComponentSeries = lazy(() => import('../../components/ComponentSeries/ComponentSeries'));
 
 const AllSeries = () => {
     return (
         <div>
-            <ComponentSeries type={''} name={'Series'} />
+            <Suspense fallback={<div>Loading...</div>}>
+                <ComponentSeries type={''} name={'Series'} />
+            </Suspense>
         </div>
     )
 }

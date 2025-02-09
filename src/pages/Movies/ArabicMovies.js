@@ -1,11 +1,12 @@
-import React from 'react'
-import ComponentMovies from '../../components/ComponentMovies/ComponentMovies';
+import React, { lazy, Suspense } from 'react'
+const ComponentMovies = lazy(() => import('../../components/ComponentMovies/ComponentMovies'));
 
 const ArabicMovies = () => {
     return (
-        <div>
-            <ComponentMovies type={'&with_original_language=ar'} name={'Arabic Movies'} />
+        <div>        <Suspense fallback={<div>Loading...</div>}>
 
+            <ComponentMovies type={'&with_original_language=ar'} name={'Arabic Movies'} />
+        </Suspense>
         </div>
     )
 }

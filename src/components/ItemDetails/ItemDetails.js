@@ -51,6 +51,7 @@ const DetailsItem = ({ details, itemID, itemType }) => {
         }
     }
 
+
     return (
         <div >
             <div className=' grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 xs:grid-cols-1 m-10   '>

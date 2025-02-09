@@ -10,6 +10,9 @@ const SeriesDetails = () => {
     const location = useLocation();
     const pathDetails = location.state
 
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
 
     const [details, setDetails] = useState(({
         img: '',

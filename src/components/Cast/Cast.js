@@ -67,7 +67,6 @@ const Cast = ({ id, type }) => {
 
             >
                 {cast.map((cast, index) => {
-                    const imgUrl = 'https://image.tmdb.org/t/p/w500';
 
                     // const date = trend.first_air_date || trend.release_date
                     // const voteAverage = trend.vote_average

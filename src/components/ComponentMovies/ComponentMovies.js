@@ -81,14 +81,14 @@ const ComponentMovies = ({ type, name }) => {
                                     <span className="absolute bg-green-600 flex items-center justify-center w-9 h-9 m-1 rounded-lg text-gray-200">
                                         {specificDigits}
                                     </span>
-                                    <LoadingSkeleton src={`${base_url_img}${movie.poster_path}`} alt="" />
-                                    {/* <img
-                                       
-                                        alt=""
+                                    <link rel="preload" as="image" href={`${base_url_img}${movie.poster_path}`} type="image/jpg" />
+
+                                    <img
+                                        src={`${base_url_img}${movie.poster_path}`} alt={''}
                                         className="h-[330px] w-[100%] shadow-md shadow-slate-400 rounded-lg"
                                         loading="lazy"
                                         style={{ aspectRatio: '2/3' }}
-                                    /> */}
+                                    />
                                     <div className="mt-2">
                                         <span className="text-sm text-color4 flex justify-center">
                                             {title && title.length <= 20 ? title : title.slice(0, 20) + '...'}

@@ -1,6 +1,5 @@
-import { useCallback, useEffect, useState } from "react";
+import { lazy, Suspense, useCallback, useEffect, useState } from "react";
 import './home.css'
-import Sections from "../../components/SectionsMovie&Series/Sections";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/navigation';
@@ -9,7 +8,8 @@ import { Autoplay } from 'swiper/modules';
 import { HiTrendingUp } from "react-icons/hi";
 import { Link } from "react-router-dom";
 import { base_url, base_url_img } from "../../config";
-import LoadingSkeleton from "../../components/LoadingSkeleton/LoadingSkeleton";
+
+const Sections = lazy(() => import('../../components/SectionsMovie&Series/Sections'));
 
 const Home = () => {
 
@@ -186,8 +186,8 @@ const Home = () => {
                             return (<SwiperSlide key={index} className=" duration-500 hover:scale-110 pt-5 pb-4 hover:pl-[10px] hover:pr-[10px]" >
                                 <Link to={pathDetails.type === 'tv' ? `/SeriesDetails/${title + '-' + trend.id}` : `/MovieDetails/${title + ' -' + trend.id}`} state={pathDetails}>
                                     <span className="absolute bg-green-600 flex items-center justify-center w-9 h-9 rounded-lg m-1 text-gray-200">{specificDigits}</span>
-                                    <LoadingSkeleton src={base_url_img + trend.poster_path} alt='' />
-                                    {/* <img src={base_url_img + trend.poster_path} loading="lazy" alt='' className='h-[330px] w-[100%] shadow-md shadow-slate-400 rounded-lg' /> */}
+                                    <link rel="preload" as="image" href={base_url_img + trend.poster_path} type="image/jpg" />
+                                    <img src={base_url_img + trend.poster_path} loading="lazy" alt='' className='h-[330px] w-[100%] shadow-md shadow-slate-400 rounded-lg' />
                                     <div className="mt-2">
                                         <span className='text-sm text-color4 flex justify-center'>{title && title.length <= 20 ? title : title.slice(0, 20) + ' ...'}</span>
                                         <span className='xl:text-lg  text-[#515861] flex justify-center  '>{date.substr(0, 4)}</span>
@@ -199,12 +199,31 @@ const Home = () => {
                     </Swiper>
                 </div>
 
-                <Sections secName={'Movies'} posters={movies} type={'movies'} />
-                <Sections secName={'Arabic Movies'} posters={arabicMovies} type={'movies'} />
+                <Suspense fallback={<div>Loading...</div>}>
+                    <Sections secName={'Movies'} posters={movies} type={'movies'} />
+                </Suspense>
+                <Suspense fallback={<div>Loading...</div>}>
+
+                    <Sections secName={'Arabic Movies'} posters={arabicMovies} type={'movies'} />
+                </Suspense>
+
                 <Sections secName={'Anime Movies'} posters={animeMovies} type={'movies'} />
-                <Sections secName={'Series'} posters={Series} type={'Series'} />
-                <Sections secName={'Arabic Series'} posters={arabicSeries} type={'Series'} />
-                <Sections secName={'Anime Series'} posters={animeSeries} type={'Series'} />
+
+                <Suspense fallback={<div>Loading...</div>}>
+
+                    <Sections secName={'Series'} posters={Series} type={'Series'} />
+
+                </Suspense>
+                <Suspense fallback={<div>Loading...</div>}>
+
+                    <Sections secName={'Arabic Series'} posters={arabicSeries} type={'Series'} />
+                </Suspense>
+
+                <Suspense fallback={<div>Loading...</div>}>
+
+                    <Sections secName={'Anime Series'} posters={animeSeries} type={'Series'} />
+                </Suspense>
+
             </div>
 
 

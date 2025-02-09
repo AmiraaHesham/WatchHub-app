@@ -1,12 +1,14 @@
-import React from 'react'
-
-import ComponentMovies from '../../components/ComponentMovies/ComponentMovies';
+import React, { lazy, Suspense } from 'react'
+const ComponentMovies = lazy(() => import('../../components/ComponentMovies/ComponentMovies'));
 
 const AllMovies = () => {
 
     return (
         <div>
-            <ComponentMovies type={''} name={'Movies'} />
+            <Suspense fallback={<div>Loading...</div>}>
+
+                <ComponentMovies type={''} name={'Movies'} />
+            </Suspense>
         </div>
     )
 }
