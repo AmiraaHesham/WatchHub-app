@@ -3,14 +3,17 @@
 @tailwind utilities;
 
 .div-header {
-  @apply flex justify-between  shadow-md shadow-slate-400 bg-color2;
+  @apply flex justify-between shadow-md shadow-slate-400 bg-color2;
 }
+
 .div-logo {
-  @apply flex  items-center;
+  @apply flex items-center;
 }
+
 .btn-dashboard {
   @apply flex justify-center lg:hidden xs:block pl-2 text-3xl text-color4;
 }
+
 .div-logo div {
   @apply mx-4 text-3xl font-serif flex items-center text-[#b1abae] hover:cursor-default;
 }
@@ -18,12 +21,13 @@
 .div-navbar {
   @apply lg:flex xs:hidden items-center text-lg gap-16 text-color4;
 }
+
 .div-navbar li {
   @apply hover:text-color3 cursor-pointer list-none;
 }
 
 .div-menus {
-  @apply absolute text-lg z-50 top-14   items-start bg-color5 w-[170px] rounded-md;
+  @apply absolute text-lg z-50 top-14 items-start bg-color5 w-[170px] rounded-md;
 }
 
 .div-menus span {
@@ -31,7 +35,7 @@
 }
 
 .div-new-fav {
-  @apply text-sm flex items-baseline xl:mr-10 xl:ml-5 xs:ml-1 xs:gap-0  xl:gap-7 hover:cursor-pointer text-color4;
+  @apply text-sm flex items-baseline xl:mr-10 xl:ml-5 xs:ml-1 xs:gap-0 xl:gap-7 hover:cursor-pointer text-color4;
 }
 
 .div-new-fav div {
@@ -43,8 +47,9 @@
 }
 
 .span-new-fav {
-  @apply flex justify-center hover:cursor-pointer xs:hidden xl:block  hover:text-color3;
+  @apply flex justify-center hover:cursor-pointer xs:hidden xl:block hover:text-color3;
 }
+
 .btn-search {
   @apply xl:bg-[#515861] xs:bg-none h-10 pl-4 w-11 flex items-center rounded-e-md;
 }
@@ -62,15 +67,17 @@
 }
 
 .section {
-  @apply text-lg flex items-center justify-start gap-2  text-color4 hover:text-color3 mb-5;
+  @apply text-lg flex items-center justify-start gap-2 text-color4 hover:text-color3 mb-5;
 }
 
 .section-list {
-  @apply grid grid-cols-2  text-sm transform duration-700 hover:scale-105 mb-2 text-[#626567] hover:text-color4 rounded-md  hover:bg-[#16181b] bg-[#1d2023];
+  @apply grid grid-cols-2 text-sm transform duration-700 hover:scale-105 mb-2 text-[#626567] hover:text-color4 rounded-md hover:bg-[#16181b] bg-[#1d2023];
 }
+
 .section-list span {
   @apply hover:bg-black py-2 px-3 rounded-md;
 }
+
 .div-searchIn-xs {
   @apply flex justify-between items-center xl:hidden;
 }

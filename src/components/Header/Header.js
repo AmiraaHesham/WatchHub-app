@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React, { useRef, useState } from 'react'
 import './header.css'
 import { FaSearch } from "react-icons/fa";
 import { MdOutlineUpdate } from "react-icons/md";
@@ -9,11 +9,32 @@ import { FaFilm } from "react-icons/fa6";
 import { MdOutlineLiveTv } from "react-icons/md";
 import { IoMdClose } from "react-icons/io";
 import { Link } from 'react-router-dom';
+import axios from 'axios';
+import Search from '../Search/Search';
 
 const Header = () => {
     const btnSearchRef = useRef()
+    const [searchInfo, setSearchInfo] = useState('')
 
+    const SearchInfo = async (query) => {
+        try {
+            const res = await axios.get(`https://api.themoviedb.org/3/search/keyword?query=${query}&page=1`,
 
+                {
+                    headers: {
+                        'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkYThiZDI2NjI3N2IyMzQyMjdlOThlOGExN2I1NTczZiIsIm5iZiI6MTczMTYwNDcwNi44ODYwMDAyLCJzdWIiOiI2NzM2MzBlMmQ0ZmZiYTFlOGIyYWZiY2IiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.b2iu3fZKxKimYlGs336gpdwow2i0ajLbxuEghrTHBJE'
+                        , 'Accept': 'application/json',
+                    },
+
+                },
+            )
+            setSearchInfo(res.data)
+            console.log(res.data.results)
+        }
+        catch {
+
+        }
+    }
     return (
         < >
             <div className='div-header'>
@@ -38,51 +59,15 @@ const Header = () => {
                 <nav className='div-navbar'>
                     <Link to={'/'}> <li>Home</li></Link>
 
-                    <div className='flex justify-center'
-                        onClick={() => {
-                            let menumovie = document.querySelector('#menu-movie')
-                            menumovie.classList.toggle('hidden')
-                            let menuseries = document.querySelector('#menu-series')
-                            menuseries.classList.add('hidden')
-                        }}
-                    >
-                        <li >Movies</li>
-                        <div onMouseLeave={() => {
-                            let menumovie = document.querySelector('#menu-movie')
-                            menumovie.classList.add('hidden')
-                        }} id='menu-movie'
-                            className='div-menus hidden'>
+                    <div className='flex justify-center'>
+                        <Link to='/Movies'>  <li >Movies</li></Link>
 
-                            <span >New</span>
-                            <span >Trending</span>
-                            <span>Popular</span>
-
-                        </div>
                     </div>
 
 
-                    <div className='flex justify-center '
-                        onClick={() => {
-                            let menuseries = document.querySelector('#menu-series')
-                            menuseries.classList.toggle('hidden')
-                            let menumovie = document.querySelector('#menu-movie')
-                            menumovie.classList.add('hidden')
-                        }}
-                    >
-                        <li>Series </li>
-                        <div
-                            onMouseLeave={() => {
-                                let menuseries = document.querySelector('#menu-series')
-                                menuseries.classList.add('hidden')
-                            }}
-                            id='menu-series'
-                            className='hidden div-menus'>
-                            <span >New</span>
-                            <span >Trending</span>
-                            <span>Popular</span>
+                    <div className='flex justify-center '>
+                        <Link to='/Series'>  <li>Series </li></Link>
 
-
-                        </div>
                     </div>
 
                 </nav>
@@ -101,7 +86,7 @@ const Header = () => {
                     </div>
 
 
-                    <input placeholder='Search ...' type='text' className='input-search ' />
+                    <input placeholder='Search ...' type='text' onChange={(e) => { SearchInfo(e.target.value) }} className='input-search ' />
                     <button ref={btnSearchRef}
                         onClick={() => {
                             const computedStyle = window.getComputedStyle(btnSearchRef.current)
@@ -129,31 +114,20 @@ const Header = () => {
                         </div>
                     </Link>
 
-                    <div className='section '>
+                    <Link to='/Movies'>   <div className='section '>
                         <span><FaFilm /></span>
                         <span >Movies</span>
                     </div>
+                    </Link>
 
-                    <div className='section-list'>
-                        <span >New</span>
-                        <span >Trending</span>
-                        <span>Popular</span>
-
-
-                    </div>
-                    <div>
-                        <div className='section '>
+                    <div >
+                        <Link to='/Series'>    <div className='section '>
                             <span><MdOutlineLiveTv /></span>
                             <span >Series</span>
                         </div>
-
-                        <div className='section-list'>
-                            <span >New</span>
-                            <span >Trending</span>
-                            <span>Popular</span>
+                        </Link>
 
 
-                        </div>
                     </div>
                 </div>
             </div>
@@ -168,6 +142,7 @@ const Header = () => {
                         className='bg-color5 h-8 pr-6'> <IoMdClose className=' text-color3 text-xl ' /></button>
                 </div>
             </div>
+            {/* <Search searchInfo={searchInfo} /> */}
         </>
 
     )
