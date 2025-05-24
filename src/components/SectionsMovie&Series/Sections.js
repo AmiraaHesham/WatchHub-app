@@ -43,7 +43,7 @@ const Sections = ({ posters, secName }) => {
 
                     {posters.map((poster, index) => {
 
-                        const date = poster.first_air_date || poster.release_date
+                        const date = poster.first_air_date || poster.release_date || ''
                         const voteAverage = poster.vote_average
                         const title = poster.title || poster.name
                         const specificDigits = Number(voteAverage.toString().slice(0, 3));
@@ -63,7 +63,7 @@ const Sections = ({ posters, secName }) => {
                                 {/* <img  loading="lazy" alt='' className='h-[330px] w-[100%]  shadow-md shadow-slate-400 rounded-lg ' /> */}
                                 <div className="mt-2 ">
                                     <span className=' text-sm  text-color4 flex justify-center'>{title && title.length <= 20 ? title : title.slice(0, 20) + ' ...'}</span>
-                                    <span className='text-sm  text-[#515861] flex justify-center '>{date.substr(0, 4)}</span>
+                                    <span className='xl:text-lg  text-[#515861] flex justify-center  '>{date.substr(0, 4)}</span>
                                 </div>
                             </Link>
                         </SwiperSlide>
