@@ -11,6 +11,7 @@ import AnimeMovies from './pages/Movies/AnimeMovies';
 import AllSeries from './pages/Series/AllSeries';
 import ArabicSeries from './pages/Series/ArabicSeries';
 import AnimeSeries from './pages/Series/AnimeSeries';
+import Search from './components/Search/Search';
 
 function App() {
 
@@ -19,6 +20,7 @@ function App() {
       <Header />
       <Routes>
         <Route path='/' element={<Home />} />
+        <Route path='/Search' element={<Search />} />
         <Route path='/SeriesDetails/:id' element={<SeriesDetails />} />
         <Route path='/MovieDetails/:id' element={<MovieDetails />} />
         <Route path='/Movies' element={<AllMovies />} />

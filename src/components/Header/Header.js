@@ -8,17 +8,19 @@ import { IoHome } from "react-icons/io5";
 import { FaFilm } from "react-icons/fa6";
 import { MdOutlineLiveTv } from "react-icons/md";
 import { IoMdClose } from "react-icons/io";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Search from '../Search/Search';
 
 const Header = () => {
     const btnSearchRef = useRef()
+    const inputRef = useRef()
     const [searchInfo, setSearchInfo] = useState('')
+    const navigate = useNavigate()
 
     const SearchInfo = async (query) => {
         try {
-            const res = await axios.get(`https://api.themoviedb.org/3/search/keyword?query=${query}&page=1`,
+            const res = await axios.get(`https://api.themoviedb.org/3/search/multi?query=${query}&page=1`,
 
                 {
                     headers: {
@@ -28,8 +30,16 @@ const Header = () => {
 
                 },
             )
-            setSearchInfo(res.data)
-            console.log(res.data.results)
+            console.log(query)
+            if (query !== '') {
+                navigate('/Search', { state: { data: res.data.results } })
+
+            }
+            else {
+                navigate('/')
+
+            }
+            // console.log(res.data.)
         }
         catch {
 
@@ -86,7 +96,8 @@ const Header = () => {
                     </div>
 
 
-                    <input placeholder='Search ...' type='text' onChange={(e) => { SearchInfo(e.target.value) }} className='input-search ' />
+                    <input placeholder='Search ...' type='text' onChange={(e) => { SearchInfo(e.target.value) }}
+                        className='input-search ' />
                     <button ref={btnSearchRef}
                         onClick={() => {
                             const computedStyle = window.getComputedStyle(btnSearchRef.current)
@@ -133,16 +144,17 @@ const Header = () => {
             </div>
             <div id='input-search-in-xs' className='hidden'>
                 <div className='div-searchIn-xs '>
-                    <input placeholder='Search...' className='w-[100%] text-lg text-color3 outline-none bg-color5  h-8 pl-5 placeholder:text-color4 placeholder:text-sm '></input>
+                    <input placeholder='Search...' ref={inputRef} onChange={(e) => { SearchInfo(e.target.value) }} className='w-[100%] text-lg text-color3 outline-none bg-color5  h-8 pl-5 placeholder:text-color4 placeholder:text-sm '></input>
                     <button
                         onClick={() => {
                             let inputSearchInxs = document.querySelector('#input-search-in-xs')
                             inputSearchInxs.classList.add('hidden')
+                            SearchInfo('')
+                            inputRef.current.value = ''
                         }}
                         className='bg-color5 h-8 pr-6'> <IoMdClose className=' text-color3 text-xl ' /></button>
                 </div>
             </div>
-            {/* <Search searchInfo={searchInfo} /> */}
         </>
 
     )

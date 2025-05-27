@@ -1,18 +1,21 @@
 import axios from 'axios'
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { base_url, base_url_img } from '../../config'
 
-const Search = ({ searchInfo }) => {
+const Search = () => {
+    const location = useLocation()
+    const { data } = location.state || {}
+    console.log(data)
     return (
         <div>
             <div className="flex justify-center items-center my-10">
                 <div className="w-[90%] grid xl:grid-cols-5 lg:grid-cols-4 md:grid-cols-3 xs:grid-cols-2">
-                    {searchInfo.map((info, index) => {
-                        const date = info.first_air_date || info.release_date;
+                    {data.map((info, index) => {
+                        const date = info.first_air_date || info.release_date || '';
                         const voteAverage = info.vote_average;
                         const title = info.title || info.name;
-                        const specificDigits = Number(voteAverage.toString().slice(0, 3));
+                        // const specificDigits = Number(voteAverage.toString().slice(0, 3));
                         const type = info.hasOwnProperty('title') ? 'movie' : 'tv';
 
                         const pathDetails = {
@@ -27,7 +30,7 @@ const Search = ({ searchInfo }) => {
                                     state={pathDetails}
                                 >
                                     <span className="absolute bg-green-600 flex items-center justify-center w-9 h-9 m-1 rounded-lg text-gray-200">
-                                        {specificDigits}
+                                        {Number(voteAverage?.toFixed(1))}
                                     </span>
                                     <link rel="preload" as="image" href={`${base_url_img}${info.poster_path}`} type="image/jpg" />
 
