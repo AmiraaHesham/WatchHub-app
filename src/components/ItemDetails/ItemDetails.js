@@ -19,6 +19,13 @@ const DetailsItem = ({ details, itemID, itemType }) => {
 
     const toggleVisibility = () => {
         setIsVisible(!isVisible);
+        if (isVisible === false) {
+
+            document.getElementById('div-trailer').scrollIntoView({ behavior: 'smooth' });
+        }
+        // console.log(isVisible)
+
+
     };
 
     const translationArabic = async () => {
@@ -154,15 +161,18 @@ const DetailsItem = ({ details, itemID, itemType }) => {
 
                 </div>
             </div>
-            {isVisible && (
-                <div>
-                    <button
-                        onClick={toggleVisibility}
-                        className='text-3xl font-semibold text-color3 mx-10'><IoMdClose /></button>
-                    <Trailer type={itemType} id={itemID} />
-                </div>
+            <div id='div-trailer'>
 
-            )}
+                {isVisible && (
+                    <div >
+                        <button
+                            onClick={toggleVisibility}
+                            className='text-3xl font-semibold text-color3 mx-10'><IoMdClose /></button>
+                        <Trailer type={itemType} id={itemID} />
+                    </div>
+
+                )}
+            </div>
 
             <Cast type={itemType} id={itemID} />
 
