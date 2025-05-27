@@ -82,18 +82,6 @@ const Header = () => {
 
                 </nav>
                 <div className=' py-2 flex items-center mr-5 '>
-                    <div className='div-new-fav'>
-
-                        <div>
-                            <span className='icon-new-fav'><MdOutlineUpdate /></span>
-                            <span className='span-new-fav'>New</span>
-                        </div>
-
-                        <div>
-                            <span className='icon-new-fav '><MdOutlineFavorite /></span>
-                            <span className='span-new-fav'>Favorite</span>
-                        </div>
-                    </div>
 
 
                     <input placeholder='Search ...' type='text' onChange={(e) => { SearchInfo(e.target.value) }}

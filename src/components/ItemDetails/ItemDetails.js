@@ -70,24 +70,6 @@ const DetailsItem = ({ details, itemID, itemType }) => {
                             </div>
                         </div>
                         <div className='flex ml-5  gap-5  text-lg text-color4 mt-16 '>
-
-                            <button
-                                // onClick={toggleVisibility}
-
-                                className=' gap-2 flex items-center shadow-sm shadow-slate-400 bg-color2 hover:bg-color5 py-2 px-3 rounded-md duration-500 hover:scale-105'>
-                                <FaRegImages /> Images
-                            </button>
-
-                            <button
-                                onClick={() => {
-                                    const addFav = document.querySelector('#add-fav')
-                                    const removeFav = document.querySelector('#remove-fav')
-                                    addFav.classList.toggle('hidden')
-                                    removeFav.classList.toggle('hidden')
-                                }}
-                                className='gap-2 flex items-center shadow-sm shadow-slate-400 bg-color2 py-2 px-3 rounded-md hover:bg-color5  duration-500 hover:scale-105'>
-                                <MdOutlineFavorite id='add-fav' className='hidden' />
-                                <MdFavoriteBorder id='remove-fav' />Favoret</button>
                         </div>
                     </div>
                 </div>
