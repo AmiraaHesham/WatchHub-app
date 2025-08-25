@@ -1,4 +1,6 @@
 import './App.css';
+import { useState, useEffect } from "react";
+
 import Header from './components/Header/Header';
 import SeriesDetails from './pages/Details/SeriesDetails';
 import MovieDetails from './pages/Details/MovieDetails';
@@ -14,7 +16,22 @@ import AnimeSeries from './pages/Series/AnimeSeries';
 import Search from './components/Search/Search';
 
 function App() {
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 2000);
+    return () => clearTimeout(timer);
+  }, []);
+  if (loading) {
+    return (
+      <div className="flex flex-col gap-10 justify-center items-center h-screen bg-color1">
+        <img src="/favicon.ico" alt="" className="w-[100px] h-[100px]  border-t-transparent rounded-full animate-pulse" />
+        <h1 className="md:text-5xl xs:text-4xl  font-serif font-semibold animate-pulse bg-gradient-to-r from-color4 via-color3 to-color2 bg-clip-text text-transparent ">WatchHub</h1>
 
+      </div>
+    );
+  }
   return (
     <div className="App">
       <Header />

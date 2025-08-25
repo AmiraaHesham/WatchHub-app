@@ -1,4 +1,4 @@
-import { lazy, Suspense, useCallback, useEffect, useState } from "react";
+import { lazy, useCallback, useEffect, useState } from "react";
 import './home.css'
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
@@ -8,10 +8,12 @@ import { Autoplay } from 'swiper/modules';
 import { HiTrendingUp } from "react-icons/hi";
 import { Link } from "react-router-dom";
 import { base_url, base_url_img } from "../../config";
-
+import AOS from "aos";
+import "aos/dist/aos.css";
 const Sections = lazy(() => import('../../components/SectionsMovie&Series/Sections'));
 
 const Home = () => {
+
 
     const [trendAll, setTrendAll] = useState([])
     const [Series, setSeries] = useState([])
@@ -126,6 +128,10 @@ const Home = () => {
         }
     }, []);
     useEffect(() => {
+        AOS.init({
+            duration: 1000, // مدة الأنيميشن (بالمللي ثانية)
+            once: false,
+        });
         getTrendAll();
         getDiscoverMovies()
         getDiscoverSeries()
@@ -140,7 +146,7 @@ const Home = () => {
 
                     <span>Trending</span>
                 </div>
-                <div className='   mx-4'>
+                <div data-aos="fade-up" className='   mx-4'>
                     <Swiper
                         modules={[Autoplay]}
 
@@ -198,32 +204,14 @@ const Home = () => {
 
                     </Swiper>
                 </div>
+                <Sections secName={'Movies'} posters={movies} type={'movies'} />
 
-                <Suspense fallback={<div>Loading...</div>}>
-                    <Sections secName={'Movies'} posters={movies} type={'movies'} />
-                </Suspense>
-                <Suspense fallback={<div>Loading...</div>}>
-
-                    <Sections secName={'Arabic Movies'} posters={arabicMovies} type={'movies'} />
-                </Suspense>
+                <Sections secName={'Arabic Movies'} posters={arabicMovies} type={'movies'} />
 
                 <Sections secName={'Anime Movies'} posters={animeMovies} type={'movies'} />
-
-                <Suspense fallback={<div>Loading...</div>}>
-
-                    <Sections secName={'Series'} posters={Series} type={'Series'} />
-
-                </Suspense>
-                <Suspense fallback={<div>Loading...</div>}>
-
-                    <Sections secName={'Arabic Series'} posters={arabicSeries} type={'Series'} />
-                </Suspense>
-
-                <Suspense fallback={<div>Loading...</div>}>
-
-                    <Sections secName={'Anime Series'} posters={animeSeries} type={'Series'} />
-                </Suspense>
-
+                <Sections secName={'Series'} posters={Series} type={'Series'} />
+                <Sections secName={'Arabic Series'} posters={arabicSeries} type={'Series'} />
+                <Sections secName={'Anime Series'} posters={animeSeries} type={'Series'} />
             </div>
 
 
