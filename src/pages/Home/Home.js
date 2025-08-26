@@ -1,6 +1,7 @@
-import { lazy, useCallback, useEffect, useState } from "react";
+import React, { lazy, useCallback, useEffect, useState, Suspense } from "react";
 import './home.css'
 import { Swiper, SwiperSlide } from 'swiper/react';
+
 import 'swiper/css';
 import 'swiper/css/navigation';
 import axios from "axios";
@@ -10,7 +11,7 @@ import { Link } from "react-router-dom";
 import { base_url, base_url_img } from "../../config";
 import AOS from "aos";
 import "aos/dist/aos.css";
-const Sections = lazy(() => import('../../components/SectionsMovie&Series/Sections'));
+const Sections = React.lazy(() => import('../../components/SectionsMovie&Series/Sections'));
 
 const Home = () => {
 
@@ -174,6 +175,7 @@ const Home = () => {
                                 slidesPerView: 6,
                             },
                         }}
+                        className="h-[450px] "
 
                     >
                         {trendAll.map((trend, index) => {
@@ -204,8 +206,8 @@ const Home = () => {
 
                     </Swiper>
                 </div>
-                <Sections secName={'Movies'} posters={movies} type={'movies'} />
 
+                <Sections secName={'Movies'} posters={movies} type={'movies'} />
                 <Sections secName={'Arabic Movies'} posters={arabicMovies} type={'movies'} />
 
                 <Sections secName={'Anime Movies'} posters={animeMovies} type={'movies'} />

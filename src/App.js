@@ -14,9 +14,12 @@ import AllSeries from './pages/Series/AllSeries';
 import ArabicSeries from './pages/Series/ArabicSeries';
 import AnimeSeries from './pages/Series/AnimeSeries';
 import Search from './components/Search/Search';
+import ScrollToTop from './components/ScrollToTop';
 
 function App() {
+
   const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     const timer = setTimeout(() => {
       setLoading(false);
@@ -34,6 +37,7 @@ function App() {
   }
   return (
     <div className="App">
+      <ScrollToTop />
       <Header />
       <Routes>
         <Route path='/' element={<Home />} />

@@ -6,18 +6,16 @@ import { base_url, base_url_img } from "../../config";
 
 
 const SeriesDetails = () => {
+
     useParams()
     const location = useLocation();
     const pathDetails = location.state
 
-    useEffect(() => {
-        window.scrollTo(0, 0);
-    }, []);
 
     const [details, setDetails] = useState(({
         img: '',
         title: '',
-        overview: '',
+        overvie: '',
         vote_average: '',
         year: '',
         number_of_seasons: '',
@@ -100,11 +98,11 @@ const SeriesDetails = () => {
 
     // }, [pathDetails])
 
+
     useEffect(() => {
         getDetails()
-        // getTrailerKey()
-    }, [getDetails])
 
+    }, [getDetails])
 
     return (
         <div>

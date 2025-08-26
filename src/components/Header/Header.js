@@ -47,7 +47,7 @@ const Header = () => {
     }
     return (
         < >
-            <div className='div-header'>
+            <div className='div-header animate-slideY'>
                 <  div className='div-logo'>
                     <span
                         onClick={() => {

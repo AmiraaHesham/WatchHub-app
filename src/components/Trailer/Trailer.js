@@ -33,8 +33,9 @@ const Trailer = ({ type, id }) => {
             <iframe
                 src={`https://www.youtube.com/embed/${trailerKey}`}
                 title="Movie Trailer"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                className=' w-[85%] xl:h-[600px] xs:h-[400px] md:h-[450px] rounded-md '
+                style={{ width: "90%", height: "600px" }}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
             ></iframe>
         </div>
     )

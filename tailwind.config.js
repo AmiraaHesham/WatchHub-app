@@ -1,3 +1,5 @@
+const { transform } = require('framer-motion');
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
@@ -18,8 +20,26 @@ module.exports = {
       screens: {
         'xs': '200px', // Add custom small screens
       },
+      keyframes: {
+        slideY: {
+          '0%': { transform: 'translateY(-100%)' },
+          '100%': { transform: 'translateY(0)' },
+        },
+        // slideX: {
+        //   '0%': { transform: 'translateX(-100%)' },
+        //   '100%': { transform: 'translateX(0)' },
+        // },
+        // slideRight: {
+        //   "0%": { transform: "translateX(100%)" },
+        //   "100%": { transform: "translateX(0)" },
+        // },
+      },
+      animation: {
+        slideY: 'slideY 0.5s ease-in-out',
+        // slideX: 'slideX 1s ease-in-out',
+        // slideRight: 'slideRight 1s ease-in-out',
+      },
     },
-  },
-  plugins: [],
+    plugins: [],
+  }
 }
-
