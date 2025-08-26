@@ -83,7 +83,7 @@ const Cast = ({ id, type }) => {
                         <img src={base_url_img + cast.profile_path} loading="lazy" alt='' className='h-[300px] w-[100%] shadow-md shadow-slate-400 rounded-lg' />
                         <div className="mt-2  ">
                             <span className='text-sm text-color4 flex justify-center'>{cast.name}</span>
-                            <span className='text-lg  text-[#515861] flex justify-center '>{cast.character}</span>
+                            <span title={cast.character} className='text-lg  text-[#515861] flex justify-center text-center '>{cast.character && cast.character.length <= 20 ? cast.character : cast.character.slice(0, 20) + ' ...'}</span>
                         </div>
                     </SwiperSlide>)
                 })}

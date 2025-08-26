@@ -147,7 +147,7 @@ const Home = () => {
 
                     <span>Trending</span>
                 </div>
-                <div data-aos="fade-up" className='   mx-4'>
+                <div data-aos="fade-up" className='mx-4'>
                     <Swiper
                         modules={[Autoplay]}
 
@@ -197,7 +197,7 @@ const Home = () => {
                                     <link rel="preload" as="image" href={base_url_img + trend.poster_path} type="image/jpg" />
                                     <img src={base_url_img + trend.poster_path} loading="lazy" alt='' className='h-[330px] w-[100%] shadow-md shadow-slate-400 rounded-lg' />
                                     <div className="mt-2">
-                                        <span className='text-sm text-color4 flex justify-center'>{title && title.length <= 20 ? title : title.slice(0, 20) + ' ...'}</span>
+                                        <span title={title} className='text-sm text-color4 flex justify-center'>{title && title.length <= 20 ? title : title.slice(0, 20) + ' ...'}</span>
                                         <span className='xl:text-lg  text-[#515861] flex justify-center  '>{date.substr(0, 4)}</span>
                                     </div>
                                 </Link>

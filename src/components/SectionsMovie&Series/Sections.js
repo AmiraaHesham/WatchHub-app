@@ -62,7 +62,7 @@ const Sections = ({ posters, secName }) => {
 
                                 <img src={base_url_img + poster.poster_path} alt='poster' loading="lazy" className='h-[350px] w-[100%] shadow-md shadow-slate-400 rounded-lg ' />
                                 <div className="mt-2 ">
-                                    <span className=' text-sm  text-color4 flex justify-center'>{title && title.length <= 20 ? title : title.slice(0, 20) + ' ...'}</span>
+                                    <span title={title} className=' text-sm  text-color4 flex justify-center'>{title && title.length <= 20 ? title : title.slice(0, 20) + ' ...'}</span>
                                     <span className='xl:text-lg  text-[#515861] flex justify-center  '>{date.substr(0, 4)}</span>
                                 </div>
                             </Link>
