@@ -3,7 +3,8 @@ import { useLocation, useParams } from 'react-router';
 import DetailsItem from '../../components/ItemDetails/ItemDetails';
 import axios from 'axios';
 import { base_url, base_url_img } from "../../config";
-
+import AOS from "aos";
+import "aos/dist/aos.css";
 const MovieDetails = () => {
     useParams()
     const location = useLocation();
@@ -76,6 +77,10 @@ const MovieDetails = () => {
 
     useEffect(() => {
         getDetails()
+        AOS.init({
+            duration: 1000, // مدة الأنيميشن (بالمللي ثانية)
+            once: false,
+        });
     }, [getDetails])
 
     return (

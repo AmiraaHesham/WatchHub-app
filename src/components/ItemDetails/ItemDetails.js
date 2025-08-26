@@ -58,9 +58,9 @@ const DetailsItem = ({ details, itemID, itemType }) => {
 
 
     return (
-        <div >
+        <div data-aos="fade-up">
             <div className=' grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 xs:grid-cols-1 m-10   '>
-                <div className='xs:flex  xs:items-center  xs:justify-center md:block ' data-aos="fade-up" >
+                <div className='xs:flex  xs:items-center  xs:justify-center md:block '  >
                     <div>
                         <div className='w-[300px] h-[370px] rounded-t-lg shadow-lg shadow-slate-400'>
 
@@ -78,7 +78,7 @@ const DetailsItem = ({ details, itemID, itemType }) => {
                         </div>
                     </div>
                 </div>
-                <div className='xs:mt-10 md:mt-0 mx-5  xl:col-span-3 lg:col-span-2 md:col-span-1 ' data-aos="fade-up">
+                <div className='xs:mt-10 md:mt-0 mx-5  xl:col-span-3 lg:col-span-2 md:col-span-1 '>
                     <div className='text-4xl gap-5 lg:flex justify-between items-baseline text-[#e9ecef]  '>
                         <div className='md:hidden xs:flex text-center text-[15px] text-color4 justify-center  '>
                             <div>
