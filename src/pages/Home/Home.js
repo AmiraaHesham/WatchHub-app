@@ -1,7 +1,6 @@
-import React, { lazy, useCallback, useEffect, useState, Suspense } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import './home.css'
 import { Swiper, SwiperSlide } from 'swiper/react';
-
 import 'swiper/css';
 import 'swiper/css/navigation';
 import axios from "axios";
@@ -130,7 +129,7 @@ const Home = () => {
     }, []);
     useEffect(() => {
         AOS.init({
-            duration: 1000, // مدة الأنيميشن (بالمللي ثانية)
+            duration: 1000,
             once: false,
         });
         getTrendAll();
@@ -150,8 +149,6 @@ const Home = () => {
                 <div data-aos="fade-up" className='mx-4'>
                     <Swiper
                         modules={[Autoplay]}
-
-                        // slidesPerGroup={1}
                         spaceBetween={10}
                         autoPlay={{
                             delay: 500,
@@ -209,7 +206,6 @@ const Home = () => {
 
                 <Sections secName={'Movies'} posters={movies} type={'movies'} />
                 <Sections secName={'Arabic Movies'} posters={arabicMovies} type={'movies'} />
-
                 <Sections secName={'Anime Movies'} posters={animeMovies} type={'movies'} />
                 <Sections secName={'Series'} posters={Series} type={'Series'} />
                 <Sections secName={'Arabic Series'} posters={arabicSeries} type={'Series'} />
